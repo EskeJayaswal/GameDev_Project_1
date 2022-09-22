@@ -140,10 +140,10 @@ MonoBehaviour:
   health: 100
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 20
-  damage: 5
-  timeBetweenAttacks: 1
-  sightRange: 15
-  attackRange: 1
+  damage: 10
+  timeBetweenAttacks: 0.5
+  sightRange: 50
+  attackRange: 2
   playerInSightRange: 0
   playerInAttackRange: 0
 --- !u!195 &867093325513571155
