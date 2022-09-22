@@ -109,8 +109,8 @@ NavMeshSettings:
     agentRadius: 0.5
     agentHeight: 2
     agentSlope: 45
-    agentClimb: 0.7
-    ledgeDropHeight: 0
+    agentClimb: 0.6
+    ledgeDropHeight: 6.5
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
@@ -13389,7 +13389,23 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 867093325513571156, guid: 17fd165cbbf31194f9fd097946f4c5ea, type: 3}
+      propertyPath: sightRange
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 867093325513571156, guid: 17fd165cbbf31194f9fd097946f4c5ea, type: 3}
+      propertyPath: attackRange
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 867093325513571156, guid: 17fd165cbbf31194f9fd097946f4c5ea, type: 3}
       propertyPath: timeBetweenAttacks
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 867093325513571157, guid: 17fd165cbbf31194f9fd097946f4c5ea, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 867093325513571157, guid: 17fd165cbbf31194f9fd097946f4c5ea, type: 3}
+      propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 867093325513571161, guid: 17fd165cbbf31194f9fd097946f4c5ea, type: 3}
