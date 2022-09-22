@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMove : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
    
     public NavMeshAgent agent;
@@ -18,6 +18,7 @@ public class EnemyMove : MonoBehaviour
     public float walkPointRange;
 
     // Attacking
+    public int damage;
     public float timeBetweenAttacks;
     bool alreadyAttacked;
 
@@ -93,7 +94,7 @@ public class EnemyMove : MonoBehaviour
         {
             // Attack code
             Debug.Log("Do Damage!");
-
+            PlayerStats.instance.GetComponent<IDamagable>().TakePhysicalDamage(damage);
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
