@@ -130,6 +130,10 @@ public class Enemy : MonoBehaviour, IDamagable
     {
         Debug.Log("Enemy dead --- Do something..");
         gameObject.transform.position = startPosition;
-        health = startHealth;
+
+        // Make the enemy 1 faster every time they respawn
+        agent.speed += 1; 
+        startHealth += 5;
+        health = startHealth ;
     }
 }

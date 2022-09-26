@@ -8,6 +8,8 @@ public class Gun : MonoBehaviour
     public Camera fpsCamera;
     public ParticleSystem muzzleFlash;
 
+    public GameObject impactEffect;
+
     void Update()
     {
         if(Input.GetButtonDown("Fire1"))
@@ -30,6 +32,8 @@ public class Gun : MonoBehaviour
                 Debug.Log("Hitting");
                 hit.collider.GetComponent<IDamagable>().TakePhysicalDamage(damage);
             }
+
+            Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
         }
     }
 }
