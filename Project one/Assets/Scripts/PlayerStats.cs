@@ -39,7 +39,7 @@ public class PlayerStats : MonoBehaviour, IDamagable
         health.Add(amount);
     }
     
-    public void TakePhysicalDamage(int amount)
+    public void TakePhysicalDamage(float amount)
     {
         health.Substract(amount);
         //onTakeDamage?.Invoke();
@@ -84,5 +84,5 @@ public class Stat
 
 public interface IDamagable
 {
-    void TakePhysicalDamage(int damageAmount);
+    void TakePhysicalDamage(float damageAmount);
 }

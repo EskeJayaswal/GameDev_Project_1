@@ -8,9 +8,11 @@ public class Enemy : MonoBehaviour
    
     public NavMeshAgent agent;
 
+    public GameObject EnemyPrefab;
+
     public GameObject player;
     public LayerMask whatIsGround, whatIsPlayer;
-    public int health;
+    public float health = 50f;
 
     // Patrol
     public Vector3 walkPoint;
@@ -18,7 +20,7 @@ public class Enemy : MonoBehaviour
     public float walkPointRange;
 
     // Attacking
-    public int damage;
+    public float damage = 10f;
     public float timeBetweenAttacks;
     bool alreadyAttacked;
 
@@ -106,16 +108,20 @@ public class Enemy : MonoBehaviour
         alreadyAttacked = false;
     }
 
-    public void TakeDamage(int damage)
+
+    public void TakeDamage(float damage)
     {
         health -= damage;
 
-        if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
-
+        if (health <= 0)
+        {
+            Die();
+        }
     }
 
-    private void DestroyEnemy()
+    private void Die()
     {
         Destroy(gameObject);
+        Instantiate(EnemyPrefab, new Vector3(-10, 1, 0), Quaternion.identity);
     }
 }
