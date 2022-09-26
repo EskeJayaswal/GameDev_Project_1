@@ -19,17 +19,16 @@ public class Gun : MonoBehaviour
     void Shoot()
     {
         muzzleFlash.Play();
-        
+
         RaycastHit hit;
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range))
         {
             Debug.Log(hit.transform.name);
 
-            Enemy enemy = hit.transform.GetComponent<Enemy>();
-
-            if (enemy != null)
+            if (hit.collider.GetComponent<IDamagable>() != null)
             {
-                enemy.TakeDamage(damage);
+                Debug.Log("Hitting");
+                hit.collider.GetComponent<IDamagable>().TakePhysicalDamage(damage);
             }
         }
     }

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamagable
 {
    
     public NavMeshAgent agent;
 
-    public GameObject EnemyPrefab;
+    
+    
 
     public GameObject player;
     public LayerMask whatIsGround, whatIsPlayer;
@@ -27,12 +28,18 @@ public class Enemy : MonoBehaviour
     // States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+    
+    // Respawn values
+    Vector3 startPosition;
+    float startHealth;
 
 
     void Awake()
     {
         player = GameObject.Find("PlayerObject");
         agent = GetComponent<NavMeshAgent>();
+        startPosition = gameObject.transform.position;
+        startHealth = health;
 
     }
 
@@ -109,9 +116,9 @@ public class Enemy : MonoBehaviour
     }
 
 
-    public void TakeDamage(float damage)
+    public void TakePhysicalDamage(float damageAmount)
     {
-        health -= damage;
+        health -= damageAmount;
 
         if (health <= 0)
         {
@@ -121,7 +128,8 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        Destroy(gameObject);
-        Instantiate(EnemyPrefab, new Vector3(-10, 1, 0), Quaternion.identity);
+        Debug.Log("Enemy dead --- Do something..");
+        gameObject.transform.position = startPosition;
+        health = startHealth;
     }
 }
