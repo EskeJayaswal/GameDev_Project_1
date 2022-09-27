@@ -48,7 +48,7 @@ public class PlayerStats : MonoBehaviour, IDamagable
     public void Die()
     {
         Debug.Log("Player is dead");
-        //SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Menu");
     }
 
 }

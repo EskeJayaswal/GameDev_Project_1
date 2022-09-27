@@ -128,7 +128,7 @@ public class Enemy : MonoBehaviour, IDamagable
 
     private void Die()
     {
-        Debug.Log("Enemy dead --- Do something..");
+    
         gameObject.transform.position = startPosition;
 
         // Make the enemy 1 faster every time they respawn
