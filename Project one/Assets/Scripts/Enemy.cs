@@ -6,8 +6,8 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour, IDamagable
 {
    
-    public NavMeshAgent agent;
-
+    private NavMeshAgent agent;
+    private Animator anim;
     
     
 
@@ -15,10 +15,12 @@ public class Enemy : MonoBehaviour, IDamagable
     public LayerMask whatIsGround, whatIsPlayer;
     public float health = 50f;
 
+/*
     // Patrol
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
+    */
 
     // Attacking
     public float damage = 10f;
@@ -38,6 +40,7 @@ public class Enemy : MonoBehaviour, IDamagable
     {
         player = GameObject.Find("PlayerObject");
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
         startPosition = gameObject.transform.position;
         startHealth = health;
 
@@ -50,14 +53,15 @@ public class Enemy : MonoBehaviour, IDamagable
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         
-        if (!playerInSightRange && !playerInAttackRange) Patroling();
+        //if (!playerInSightRange && !playerInAttackRange) Patroling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInSightRange && playerInAttackRange) AttackPlayer();
         
 
-        
+        SetAnimationParameters();
     }
 
+/*
     private void Patroling()
     {
         if (!walkPointSet) SearchWalkPoint();
@@ -73,6 +77,7 @@ public class Enemy : MonoBehaviour, IDamagable
 
     }
 
+
     private void SearchWalkPoint()
     {
         // Finde random coordinates within range
@@ -87,9 +92,12 @@ public class Enemy : MonoBehaviour, IDamagable
         
     }
 
+*/
+
     private void ChasePlayer()
     {
         agent.SetDestination(player.transform.position);
+        
     }
 
     private void AttackPlayer() 
@@ -135,5 +143,10 @@ public class Enemy : MonoBehaviour, IDamagable
         agent.speed += 1; 
         startHealth += 5;
         health = startHealth ;
+    }
+
+        private void SetAnimationParameters()
+    {
+        anim.SetFloat("Speed", agent.desiredVelocity.magnitude);
     }
 }
