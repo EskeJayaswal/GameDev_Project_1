@@ -105,7 +105,6 @@ public class Enemy : MonoBehaviour, IDamagable
         // Make sure enemy doesnt move
         agent.SetDestination(transform.position);
 
-        transform.LookAt(player.transform);
 
         if (!alreadyAttacked)
         {
