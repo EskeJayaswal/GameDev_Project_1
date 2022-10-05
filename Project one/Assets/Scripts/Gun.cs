@@ -25,6 +25,13 @@ public class Gun : MonoBehaviour
         currentAmmo = maxAmmo;
     }
 
+    //Denne metode bliver aktuel når vi har en weaponholder og mulgihed for at skifte mellem våben
+    void OnEnable()
+    {
+        isReloading = false;
+        animator.SetBool("Reloading", false);
+    }
+
     void Update()
     {
         if (isReloading)
@@ -49,9 +56,11 @@ public class Gun : MonoBehaviour
 
         animator.SetBool("Reloading", true);
 
-        yield return new WaitForSeconds(reloadTime);
+        yield return new WaitForSeconds(reloadTime - .25f);
 
         animator.SetBool("Reloading", false);
+
+        yield return new WaitForSeconds(.25f);
 
         currentAmmo = maxAmmo;
         isReloading = false;
