@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public class Gun : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class Gun : MonoBehaviour
 
     //reload variables
     public int maxAmmo = 7;
-    private int currentAmmo;
+    public int currentAmmo;
     public float reloadTime = 3f;
     private bool isReloading = false;
 
@@ -20,6 +21,8 @@ public class Gun : MonoBehaviour
 
     public Animator animator;
 
+    public TextMeshProUGUI  bulletCount;
+
     void start() 
     {
         currentAmmo = maxAmmo;
@@ -28,6 +31,7 @@ public class Gun : MonoBehaviour
     //Denne metode bliver aktuel når vi har en weaponholder og mulgihed for at skifte mellem våben
     void OnEnable()
     {
+        currentAmmo = maxAmmo;
         isReloading = false;
         animator.SetBool("Reloading", false);
     }
@@ -64,6 +68,7 @@ public class Gun : MonoBehaviour
 
         currentAmmo = maxAmmo;
         isReloading = false;
+        bulletCount.text = currentAmmo.ToString();
     }
 
     void Shoot()
@@ -71,6 +76,7 @@ public class Gun : MonoBehaviour
         muzzleFlash.Play();
 
         currentAmmo--;
+        bulletCount.text = currentAmmo.ToString();
 
         RaycastHit hit;
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range))

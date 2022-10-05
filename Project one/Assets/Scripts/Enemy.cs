@@ -106,8 +106,11 @@ public class Enemy : MonoBehaviour, IDamagable
         agent.SetDestination(transform.position);
 
 
+
         if (!alreadyAttacked)
         {
+            transform.LookAt(player.transform);
+
             // Attack code
             Debug.Log("Do Damage!");
             PlayerStats.instance.GetComponent<IDamagable>().TakePhysicalDamage(damage);
