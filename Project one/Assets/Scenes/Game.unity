@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23860
+  m_Name: pb_Mesh23898
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -729,7 +729,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
-  - {fileID: 2100000, guid: 2ea7d8353fcd27d43b0f282b180c3851, type: 2}
+  - {fileID: 2100000, guid: 91f54b20767fc8b4ca3f4434f896f2e2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -13337,6 +13337,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17fd165cbbf31194f9fd097946f4c5ea, type: 3}
+--- !u!1 &2060008041 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4660780730095469991, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
+  m_PrefabInstance: {fileID: 779263065504488748}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2060008044
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060008041}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b2a924733944f994382c99607c3183c4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2145160553
 GameObject:
   m_ObjectHideFlags: 0
@@ -13420,6 +13445,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 758410559, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 2060008044}
+    - target: {fileID: 779263065309634674, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
+      propertyPath: mouseSensitivity
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 779263065991868696, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -13472,6 +13505,38 @@ PrefabInstance:
       propertyPath: health.uiBar
       value: 
       objectReference: {fileID: 2145160555}
+    - target: {fileID: 5468983815074733853, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.533
+      objectReference: {fileID: 0}
+    - target: {fileID: 5468983815074733853, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.179
+      objectReference: {fileID: 0}
+    - target: {fileID: 5468983815074733853, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99876314
+      objectReference: {fileID: 0}
+    - target: {fileID: 5468983815074733853, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5468983815074733853, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.049721323
+      objectReference: {fileID: 0}
+    - target: {fileID: 5468983815074733853, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5468983815074733853, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5468983815074733853, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -5.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
 --- !u!1001 &867093327078800560
