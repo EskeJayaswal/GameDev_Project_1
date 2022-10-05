@@ -139,8 +139,11 @@ public class Enemy : MonoBehaviour, IDamagable
     
         gameObject.transform.position = startPosition;
 
-        // Make the enemy 1 faster every time they respawn
-        agent.speed += 1; 
+        if (agent.speed <= 10){
+            Debug.Log(agent.speed);
+            // Make the enemy 1 faster every time they respawn
+            agent.speed += 1; 
+        }
         startHealth += 5;
         health = startHealth ;
     }
