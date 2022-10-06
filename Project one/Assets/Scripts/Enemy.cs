@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour, IDamagable
         
         //if (!playerInSightRange && !playerInAttackRange) Patroling();
         if (playerInSightRange && !playerInAttackRange && !alreadyAttacked && !isDying) ChasePlayer();
-        if (playerInSightRange && playerInAttackRange) AttackPlayer();
+        if (playerInSightRange && playerInAttackRange && !isDying) AttackPlayer();
         
 
         SetAnimationParameters();
@@ -113,8 +113,6 @@ public class Enemy : MonoBehaviour, IDamagable
         {
             transform.LookAt(player.transform);
 
-            // Attack code
-            //Debug.Log("Do Damage!");
             alreadyAttacked = true;
             PlayerStats.instance.GetComponent<IDamagable>().TakePhysicalDamage(damage);
             anim.SetTrigger("Attack");
@@ -151,7 +149,8 @@ public class Enemy : MonoBehaviour, IDamagable
     
         gameObject.transform.position = startPosition;
 
-        Invoke(nameof(Respawn), 1f);
+        // Time before they respawn
+        Invoke(nameof(Respawn), 2f);
 
     }
 

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 
 public class Gun : MonoBehaviour
@@ -9,7 +10,7 @@ public class Gun : MonoBehaviour
     public float range = 100f;
 
     //reload variables
-    public int maxAmmo = 7;
+    public int maxAmmo = 15;
     public int currentAmmo;
     public float reloadTime = 3f;
     private bool isReloading = false;
@@ -33,6 +34,7 @@ public class Gun : MonoBehaviour
     {
         currentAmmo = maxAmmo;
         isReloading = false;
+        bulletCount.text = currentAmmo.ToString();
         animator.SetBool("Reloading", false);
     }
 
@@ -50,7 +52,13 @@ public class Gun : MonoBehaviour
         if(Input.GetButtonDown("Fire1"))
         {
             Shoot();
-        }        
+        }
+
+        if(Input.GetKeyDown(KeyCode.R) && currentAmmo != maxAmmo)
+        {
+            StartCoroutine(Reload());
+            return;
+        }     
     }
 
     IEnumerator Reload() 
@@ -74,6 +82,7 @@ public class Gun : MonoBehaviour
     void Shoot()
     {
         muzzleFlash.Play();
+        animator.SetTrigger("Shoot");
 
         currentAmmo--;
         bulletCount.text = currentAmmo.ToString();

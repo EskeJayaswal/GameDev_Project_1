@@ -5160,6 +5160,7 @@ GameObject:
   - component: {fileID: 779263065991868703}
   - component: {fileID: 779263065991868697}
   - component: {fileID: 1457245342362424011}
+  - component: {fileID: 1160868093}
   m_Layer: 9
   m_Name: Player
   m_TagString: Untagged
@@ -5238,10 +5239,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health:
     curValue: 0
-    maxValues: 20
-    startValue: 20
+    maxValues: 50
+    startValue: 50
     regenRate: 0
     uiBar: {fileID: 0}
+--- !u!95 &1160868093
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779263065991868701}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3e89f74129671e947b8113dd9101c067, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &779263066419787116
 GameObject:
   m_ObjectHideFlags: 0
@@ -5347,28 +5368,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4642901189867670581, guid: 1f01a7aea7ce1e9419915423dfb24a86, type: 3}
   m_PrefabInstance: {fileID: 54198678245509522}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &758410559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4660780730095469991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f65a68e531dce844ab612e7c41d4d17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 50
-  range: 100
-  maxAmmo: 7
-  currentAmmo: 0
-  reloadTime: 3
-  fpsCamera: {fileID: 779263065309634673}
-  muzzleFlash: {fileID: 1119611428}
-  impactEffect: {fileID: 5051222449461831014, guid: 8ee9864e0d569e2439a7015ad4c62590, type: 3}
-  animator: {fileID: 2060008044}
-  bulletCount: {fileID: 0}
 --- !u!95 &2060008044
 Animator:
   serializedVersion: 4
@@ -5389,6 +5388,28 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &758410559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4660780730095469991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f65a68e531dce844ab612e7c41d4d17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 50
+  range: 100
+  maxAmmo: 15
+  currentAmmo: 0
+  reloadTime: 3
+  fpsCamera: {fileID: 779263065309634673}
+  muzzleFlash: {fileID: 1119611428}
+  impactEffect: {fileID: 5051222449461831014, guid: 8ee9864e0d569e2439a7015ad4c62590, type: 3}
+  animator: {fileID: 2060008044}
+  bulletCount: {fileID: 0}
 --- !u!4 &5468983815074733853 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5414794209011783311, guid: 1f01a7aea7ce1e9419915423dfb24a86, type: 3}
