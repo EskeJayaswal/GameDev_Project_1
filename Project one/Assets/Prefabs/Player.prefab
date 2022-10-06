@@ -5063,7 +5063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e44f774a5739224d862255aa8cbf26e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 250
+  mouseSensitivity: 200
   playerBody: {fileID: 779263065991868696}
 --- !u!1 &779263065794351251
 GameObject:
@@ -5361,9 +5361,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 50
   range: 100
+  maxAmmo: 7
+  currentAmmo: 0
+  reloadTime: 3
   fpsCamera: {fileID: 779263065309634673}
   muzzleFlash: {fileID: 1119611428}
   impactEffect: {fileID: 5051222449461831014, guid: 8ee9864e0d569e2439a7015ad4c62590, type: 3}
+  animator: {fileID: 2060008044}
+  bulletCount: {fileID: 0}
+--- !u!95 &2060008044
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4660780730095469991}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b2a924733944f994382c99607c3183c4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &5468983815074733853 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5414794209011783311, guid: 1f01a7aea7ce1e9419915423dfb24a86, type: 3}

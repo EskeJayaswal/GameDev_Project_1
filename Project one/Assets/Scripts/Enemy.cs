@@ -34,6 +34,7 @@ public class Enemy : MonoBehaviour, IDamagable
     // Respawn values
     Vector3 startPosition;
     float startHealth;
+    bool isDying;
 
 
     void Awake()
@@ -43,6 +44,7 @@ public class Enemy : MonoBehaviour, IDamagable
         anim = GetComponent<Animator>();
         startPosition = gameObject.transform.position;
         startHealth = health;
+        isDying = false;
 
     }
 
@@ -54,7 +56,7 @@ public class Enemy : MonoBehaviour, IDamagable
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         
         //if (!playerInSightRange && !playerInAttackRange) Patroling();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+        if (playerInSightRange && !playerInAttackRange && !alreadyAttacked && !isDying) ChasePlayer();
         if (playerInSightRange && playerInAttackRange) AttackPlayer();
         
 
@@ -112,9 +114,10 @@ public class Enemy : MonoBehaviour, IDamagable
             transform.LookAt(player.transform);
 
             // Attack code
-            Debug.Log("Do Damage!");
-            PlayerStats.instance.GetComponent<IDamagable>().TakePhysicalDamage(damage);
+            //Debug.Log("Do Damage!");
             alreadyAttacked = true;
+            PlayerStats.instance.GetComponent<IDamagable>().TakePhysicalDamage(damage);
+            anim.SetTrigger("Attack");
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
 
@@ -132,22 +135,37 @@ public class Enemy : MonoBehaviour, IDamagable
 
         if (health <= 0)
         {
-            Die();
+            agent.SetDestination(gameObject.transform.position); // So enemy don't continue to move while dying animation
+
+            isDying = true;
+            anim.SetTrigger("Dying");
+            Invoke(nameof(Die), 2.9f);
+
+            //Die();
         }
     }
 
     private void Die()
     {
+        gameObject.SetActive(false);
     
         gameObject.transform.position = startPosition;
 
+        Invoke(nameof(Respawn), 1f);
+
+    }
+
+    private void Respawn()
+    {
+        anim.SetTrigger("Respawn");
         if (agent.speed <= 10){
-            Debug.Log(agent.speed);
             // Make the enemy 1 faster every time they respawn
             agent.speed += 1; 
         }
         startHealth += 5;
-        health = startHealth ;
+        health = startHealth;
+        gameObject.SetActive(true);
+        isDying = false;
     }
 
         private void SetAnimationParameters()
