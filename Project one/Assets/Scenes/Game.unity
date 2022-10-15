@@ -576,7 +576,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -834, y: -405}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 220, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &578947944
 MonoBehaviour:
@@ -1317,7 +1317,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 7
+  m_text: 15 | 90
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14316,6 +14316,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 765115770}
     m_Modifications:
+    - target: {fileID: 3574620737356464769, guid: 28408323e48e2074cbea9c4a27765a66, type: 3}
+      propertyPath: m_Height
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3574620737356464769, guid: 28408323e48e2074cbea9c4a27765a66, type: 3}
+      propertyPath: m_Center.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3895934608192940992, guid: 28408323e48e2074cbea9c4a27765a66, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -15000,6 +15008,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 758410559, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
+      propertyPath: maxClips
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 758410559, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
       propertyPath: reloadTime
       value: 2

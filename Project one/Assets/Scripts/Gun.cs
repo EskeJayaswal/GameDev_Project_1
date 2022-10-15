@@ -11,9 +11,12 @@ public class Gun : MonoBehaviour
 
     //reload variables
     public int maxAmmo = 15;
+    public int maxClips = 6;
+    private int totalAmmo;
     public int currentAmmo;
     public float reloadTime = 3f;
     private bool isReloading = false;
+    private bool isAllOutOfAmmo = false;
 
     public Camera fpsCamera;
     public ParticleSystem muzzleFlash;
@@ -33,8 +36,9 @@ public class Gun : MonoBehaviour
     void OnEnable()
     {
         currentAmmo = maxAmmo;
+        totalAmmo = maxAmmo * maxClips;
         isReloading = false;
-        bulletCount.text = currentAmmo.ToString();
+        UpdateBulletText();
         animator.SetBool("Reloading", false);
     }
 
@@ -43,7 +47,7 @@ public class Gun : MonoBehaviour
         if (isReloading)
             return;
 
-        if (currentAmmo <= 0)
+        if (currentAmmo <= 0 && !isAllOutOfAmmo)
         {
             StartCoroutine(Reload());
             return;
@@ -51,11 +55,12 @@ public class Gun : MonoBehaviour
 
         if(Input.GetButtonDown("Fire1"))
         {
-            if (!PauseControl.gameIsPaused)
-            Shoot();
+            if (!PauseControl.gameIsPaused && !isAllOutOfAmmo) 
+                Shoot();
+            
         }
 
-        if(Input.GetKeyDown(KeyCode.R) && currentAmmo != maxAmmo)
+        if(Input.GetKeyDown(KeyCode.R) && currentAmmo != maxAmmo && totalAmmo != 0)
         {
             StartCoroutine(Reload());
             return;
@@ -75,9 +80,22 @@ public class Gun : MonoBehaviour
 
         yield return new WaitForSeconds(.25f);
 
-        currentAmmo = maxAmmo;
+        if (totalAmmo + currentAmmo >= maxAmmo)
+        {
+            totalAmmo -= maxAmmo - currentAmmo;
+            currentAmmo = maxAmmo;
+        } else {
+            currentAmmo += totalAmmo;
+            totalAmmo = 0;
+        }
+
         isReloading = false;
-        bulletCount.text = currentAmmo.ToString();
+        UpdateBulletText();
+
+        if (totalAmmo + currentAmmo == 0)
+            isAllOutOfAmmo = true;
+
+
     }
 
     void Shoot()
@@ -86,7 +104,7 @@ public class Gun : MonoBehaviour
         animator.SetTrigger("Shoot");
 
         currentAmmo--;
-        bulletCount.text = currentAmmo.ToString();
+        UpdateBulletText();
 
         RaycastHit hit;
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range))
@@ -103,5 +121,9 @@ public class Gun : MonoBehaviour
         }
     }
 
+    private void UpdateBulletText()
+    {
+        bulletCount.text = string.Format("{0} | {1}", currentAmmo.ToString(), totalAmmo.ToString());
+    }
 
 }
