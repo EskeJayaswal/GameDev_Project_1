@@ -51,6 +51,7 @@ public class Gun : MonoBehaviour
 
         if(Input.GetButtonDown("Fire1"))
         {
+            if (!PauseControl.gameIsPaused)
             Shoot();
         }
 
