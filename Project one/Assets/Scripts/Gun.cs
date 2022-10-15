@@ -89,7 +89,7 @@ public class Gun : MonoBehaviour
         bulletCount.text = currentAmmo.ToString();
 
         RaycastHit hit;
-        if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range))
+        if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range, 11))
         {
             Debug.Log(hit.transform.name);
 
