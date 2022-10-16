@@ -11,6 +11,8 @@ public class GunSounds : MonoBehaviour
     private AudioClip shoot;
     [SerializeField]
     private AudioClip reload;
+    [SerializeField]
+    private AudioClip dryfire;
 
     private AudioSource audioSource;
 
@@ -28,5 +30,10 @@ public class GunSounds : MonoBehaviour
     void WeaponReload()
     {
         audioSource.PlayOneShot(reload);
+    }
+
+    void WeaponDryFire()
+    {
+        audioSource.PlayOneShot(dryfire);
     }
 }

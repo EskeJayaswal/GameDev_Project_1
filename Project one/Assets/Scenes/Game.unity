@@ -129,7 +129,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23954
+  m_Name: pb_Mesh23990
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1464,6 +1464,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shoot: {fileID: 8300000, guid: a5cd140b2375f1d4a83f234a7ed630bc, type: 3}
   reload: {fileID: 8300000, guid: 093c3b04fc9a88b44a692d495cbd555a, type: 3}
+  dryfire: {fileID: 8300000, guid: 9297a0e65231ee14e8cbe57f40a4e061, type: 3}
 --- !u!82 &1057338536
 AudioSource:
   m_ObjectHideFlags: 0
@@ -15010,7 +15011,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 758410559, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
       propertyPath: maxClips
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 758410559, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
       propertyPath: reloadTime

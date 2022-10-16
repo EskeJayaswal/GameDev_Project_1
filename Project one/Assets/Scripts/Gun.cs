@@ -57,6 +57,10 @@ public class Gun : MonoBehaviour
         {
             if (!PauseControl.gameIsPaused && !isAllOutOfAmmo) 
                 Shoot();
+            else if(!PauseControl.gameIsPaused && isAllOutOfAmmo)
+            {
+                animator.SetTrigger("DryShoot");
+            }
             
         }
 
@@ -69,29 +73,31 @@ public class Gun : MonoBehaviour
 
     IEnumerator Reload() 
     {
-        isReloading = true;
-        Debug.Log("Reloading...");
+        if( totalAmmo != 0) {
+            isReloading = true;
+            Debug.Log("Reloading...");
 
-        animator.SetBool("Reloading", true);
+            animator.SetBool("Reloading", true);
 
-        yield return new WaitForSeconds(reloadTime - .25f);
+            yield return new WaitForSeconds(reloadTime - .25f);
 
-        animator.SetBool("Reloading", false);
+            animator.SetBool("Reloading", false);
 
-        yield return new WaitForSeconds(.25f);
+            yield return new WaitForSeconds(.25f);
 
-        if (totalAmmo + currentAmmo >= maxAmmo)
-        {
-            totalAmmo -= maxAmmo - currentAmmo;
-            currentAmmo = maxAmmo;
-        } else {
-            currentAmmo += totalAmmo;
-            totalAmmo = 0;
+            if (totalAmmo + currentAmmo >= maxAmmo)
+            {
+                totalAmmo -= maxAmmo - currentAmmo;
+                currentAmmo = maxAmmo;
+            } else {
+                currentAmmo += totalAmmo;
+                totalAmmo = 0;
+            }
+
+            isReloading = false;
+            UpdateBulletText();
         }
-
-        isReloading = false;
-        UpdateBulletText();
-
+        
         if (totalAmmo + currentAmmo == 0)
             isAllOutOfAmmo = true;
 
@@ -120,6 +126,7 @@ public class Gun : MonoBehaviour
             Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
         }
     }
+
 
     private void UpdateBulletText()
     {
