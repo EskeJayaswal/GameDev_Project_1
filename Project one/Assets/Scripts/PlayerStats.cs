@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerStats : MonoBehaviour, IDamagable
 {
     public Stat health;
     //public Stat energy
+    public Stat shotsFired;
+    public Stat hits;
+    public Stat kills;
+
 
     // Singleton
     public static PlayerStats instance;
@@ -20,6 +25,9 @@ public class PlayerStats : MonoBehaviour, IDamagable
     void Start()
     {
         health.curValue = health.startValue;
+        shotsFired.curValue = shotsFired.startValue;
+        hits.curValue = hits.startValue;
+        kills.curValue = kills.startValue;
     }
 
     void Update()
@@ -51,6 +59,28 @@ public class PlayerStats : MonoBehaviour, IDamagable
         SceneManager.LoadScene("Menu");
     }
 
+    public void AddToStat(string stat, float amount)
+    {
+        switch(stat) 
+        {
+        case "shot":
+            shotsFired.Add(amount);
+            shotsFired.counter.text = string.Format("Shots: {0}", shotsFired.curValue.ToString());
+            break;
+        case "hit":
+            hits.Add(amount);
+            hits.counter.text = string.Format("Hits: {0}", hits.curValue.ToString());
+            break;
+        case "kill":
+            kills.Add(amount);
+            kills.counter.text = string.Format("Kills: {0}", kills.curValue.ToString());
+            break;
+        }
+    }
+
+
+
+
 }
 
 
@@ -61,13 +91,16 @@ public class Stat
     public float curValue;
     public float maxValues;
     public float startValue;
-    public float regenRate;  // Maybe implement a small regen per sec
     public Image uiBar;
+    public TextMeshProUGUI  counter;
 
 
     public void Add(float amount)
     {
-        curValue = Mathf.Min(curValue + amount, maxValues);
+        if(maxValues != 0)
+            curValue = Mathf.Min(curValue + amount, maxValues);
+        else
+            curValue = curValue + amount;
     }
 
     public void Substract(float amount)

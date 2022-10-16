@@ -8,11 +8,8 @@ public class Enemy : MonoBehaviour, IDamagable
    
     private NavMeshAgent agent;
     private Animator anim;
-    private Collider collider;
-    
-    
 
-    public GameObject player;
+    private GameObject player;
     public LayerMask whatIsGround, whatIsPlayer;
     public float health = 50f;
 
@@ -30,7 +27,7 @@ public class Enemy : MonoBehaviour, IDamagable
 
     // States
     public float sightRange, attackRange;
-    public bool playerInSightRange, playerInAttackRange;
+    private bool playerInSightRange, playerInAttackRange;
     
     // Respawn values
     Vector3 startPosition;
@@ -43,7 +40,6 @@ public class Enemy : MonoBehaviour, IDamagable
         player = GameObject.Find("PlayerObject");
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-        collider = GetComponent<Collider>();
         startPosition = gameObject.transform.position;
         startHealth = health;
         isDying = false;
@@ -141,11 +137,16 @@ public class Enemy : MonoBehaviour, IDamagable
             anim.SetTrigger("Dying");
 
             // Fixed the bullets being stopped by dying enemies colliders during the dying animation..
-            collider.enabled = !collider.enabled;
+            GetComponent<Collider>().enabled = !GetComponent<Collider>().enabled;
             
+            // Add to kill score
+            PlayerStats.instance.AddToStat("kill", 1);
+    
+        
+
             Invoke(nameof(Die), 2.9f);
 
-            //Die();
+            
         }
     }
 
@@ -174,7 +175,7 @@ public class Enemy : MonoBehaviour, IDamagable
 
 
         // Fixed the bullets being stopped by dying enemies colliders during the dying animation..
-        collider.enabled = !collider.enabled;
+        GetComponent<Collider>().enabled = !GetComponent<Collider>().enabled;
     }
 
         private void SetAnimationParameters()

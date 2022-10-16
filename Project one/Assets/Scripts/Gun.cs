@@ -75,7 +75,7 @@ public class Gun : MonoBehaviour
     {
         if( totalAmmo != 0) {
             isReloading = true;
-            Debug.Log("Reloading...");
+            //Debug.Log("Reloading...");
 
             animator.SetBool("Reloading", true);
 
@@ -97,7 +97,7 @@ public class Gun : MonoBehaviour
             isReloading = false;
             UpdateBulletText();
         }
-        
+
         if (totalAmmo + currentAmmo == 0)
             isAllOutOfAmmo = true;
 
@@ -112,15 +112,22 @@ public class Gun : MonoBehaviour
         currentAmmo--;
         UpdateBulletText();
 
+        // Add to shotsfired statistic
+        PlayerStats.instance.AddToStat("shot", 1);
+
         RaycastHit hit;
         if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range))
         {
-            Debug.Log(hit.transform.name);
+            //Debug.Log(hit.transform.name);
 
             if (hit.collider.GetComponent<IDamagable>() != null)
             {
-                Debug.Log("Hitting");
+                //Debug.Log("Hitting");
                 hit.collider.GetComponent<IDamagable>().TakePhysicalDamage(damage);
+
+                // Add to shots hit statistic
+                PlayerStats.instance.AddToStat("hit", 1);
+
             }
 
             Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
