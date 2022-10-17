@@ -116,11 +116,19 @@ public class Enemy : MonoBehaviour, IDamagable
             transform.LookAt(player.transform);
 
             alreadyAttacked = true;
-            PlayerStats.instance.GetComponent<IDamagable>().TakePhysicalDamage(damage);
+            //PlayerStats.instance.GetComponent<IDamagable>().TakePhysicalDamage(damage);
+            Invoke(nameof(DoAttack), 1f);
             anim.SetTrigger("Attack");
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
 
+    }
+
+    public void DoAttack()
+    {
+        // Triggered within the enemy attack animation, so player only takes damage when the blow actually hits
+        if(playerInAttackRange && !isDying)
+            PlayerStats.instance.GetComponent<IDamagable>().TakePhysicalDamage(damage);
     }
 
     private void ResetAttack()
@@ -180,15 +188,15 @@ public class Enemy : MonoBehaviour, IDamagable
         
         GetComponent<Animator>().enabled = true;
         SetRigidbodyState(true);
+        //SetColliderState(true);
 
-        anim.SetTrigger("Respawn");
         if (agent.speed <= 10){
             // Make the enemy 1 faster every time they respawn
             agent.speed += 1; 
         }
 
-        //SetColliderState(true);
 
+        anim.SetTrigger("Respawn");
 
         startHealth += 5;
         health = startHealth;
@@ -207,7 +215,7 @@ public class Enemy : MonoBehaviour, IDamagable
         GetComponent<Rigidbody>().isKinematic = !state;
     }
 
-/*
+
     void SetColliderState(bool state)
     {
         Collider[] colliders = GetComponentsInChildren<Collider>();
@@ -217,7 +225,7 @@ public class Enemy : MonoBehaviour, IDamagable
             c.enabled = state;
         }
     }
-    */
+    
 
     private void SetAnimationParameters()
     {

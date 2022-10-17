@@ -115,8 +115,12 @@ public class Gun : MonoBehaviour
         // Add to shotsfired statistic
         PlayerStats.instance.AddToStat("shot", 1);
 
+        // Bit shift the index of the layer (11: Enemy) to get a bit mask
+        // Sometimes we accidentally hit ourself and died..
+        int layerMask = 1 << 11;
+
         RaycastHit hit;
-        if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range))
+        if (Physics.Raycast(fpsCamera.transform.position, fpsCamera.transform.forward, out hit, range, layerMask))
         {
             //Debug.Log(hit.transform.name);
 
