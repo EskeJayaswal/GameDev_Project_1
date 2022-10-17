@@ -120,10 +120,10 @@ public class Gun : MonoBehaviour
         {
             //Debug.Log(hit.transform.name);
 
-            if (hit.collider.GetComponent<IDamagable>() != null)
+            if (hit.collider.GetComponentInParent<IDamagable>() != null)
             {
                 //Debug.Log("Hitting");
-                hit.collider.GetComponent<IDamagable>().TakePhysicalDamage(damage);
+                hit.collider.GetComponentInParent<IDamagable>().TakePhysicalDamage(damage);
 
                 // Add to shots hit statistic
                 PlayerStats.instance.AddToStat("hit", 1);

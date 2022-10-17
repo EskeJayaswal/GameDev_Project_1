@@ -44,6 +44,10 @@ public class Enemy : MonoBehaviour, IDamagable
         startHealth = health;
         isDying = false;
 
+        // Ragdoll components
+        SetRigidbodyState(true);
+        //SetColliderState(true);
+
     }
 
 
@@ -133,18 +137,20 @@ public class Enemy : MonoBehaviour, IDamagable
         {
             agent.SetDestination(gameObject.transform.position); // So enemy don't continue to move while dying animation
 
+            // Add to kill score
+            if(!isDying)
+                PlayerStats.instance.AddToStat("kill", 1);
+
             isDying = true;
-            anim.SetTrigger("Dying");
+            //anim.SetTrigger("Dying");
 
             // Fixed the bullets being stopped by dying enemies colliders during the dying animation..
-            GetComponent<Collider>().enabled = !GetComponent<Collider>().enabled;
+            //GetComponent<Collider>().enabled = !GetComponent<Collider>().enabled;
             
-            // Add to kill score
-            PlayerStats.instance.AddToStat("kill", 1);
     
         
-
-            Invoke(nameof(Die), 2.9f);
+            Die();
+            //Invoke(nameof(Die), 2.9f);
 
             
         }
@@ -152,33 +158,68 @@ public class Enemy : MonoBehaviour, IDamagable
 
     private void Die()
     {
-        gameObject.SetActive(false);
+
+        // Ragdoll components
+        GetComponent<Animator>().enabled = false;
+        SetRigidbodyState(false);
+        //SetColliderState(false);
+
+        //gameObject.SetActive(false);
     
-        gameObject.transform.position = startPosition;
 
         // Time before they respawn
-        Invoke(nameof(Respawn), 2f);
+        Invoke(nameof(Respawn), 3f);
 
     }
 
+
+
     private void Respawn()
     {
+        gameObject.transform.position = startPosition;
+        
+        GetComponent<Animator>().enabled = true;
+        SetRigidbodyState(true);
+
         anim.SetTrigger("Respawn");
         if (agent.speed <= 10){
             // Make the enemy 1 faster every time they respawn
             agent.speed += 1; 
         }
+
+        //SetColliderState(true);
+
+
         startHealth += 5;
         health = startHealth;
-        gameObject.SetActive(true);
         isDying = false;
-
-
-        // Fixed the bullets being stopped by dying enemies colliders during the dying animation..
-        GetComponent<Collider>().enabled = !GetComponent<Collider>().enabled;
     }
 
-        private void SetAnimationParameters()
+    void SetRigidbodyState(bool state)
+    {
+        Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
+
+        foreach (Rigidbody r in rigidbodies)
+        {
+            r.isKinematic = state;
+        }
+
+        GetComponent<Rigidbody>().isKinematic = !state;
+    }
+
+/*
+    void SetColliderState(bool state)
+    {
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+        
+        foreach (Collider c in colliders)
+        {
+            c.enabled = state;
+        }
+    }
+    */
+
+    private void SetAnimationParameters()
     {
         anim.SetFloat("Speed", agent.desiredVelocity.magnitude);
     }
