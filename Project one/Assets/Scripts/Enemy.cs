@@ -116,10 +116,13 @@ public class Enemy : MonoBehaviour, IDamagable
             transform.LookAt(player.transform);
 
             alreadyAttacked = true;
-            //PlayerStats.instance.GetComponent<IDamagable>().TakePhysicalDamage(damage);
+           
+            // Play audio clip
+            GetComponent<EnemySounds>().HitSound();
+
             Invoke(nameof(DoAttack), 1f);
-            anim.SetTrigger("Attack");
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            anim.SetBool("Attacking", true);
+            Invoke(nameof(ResetAttack), timeBetweenAttacks - 1f);
         }
 
     }
@@ -134,6 +137,7 @@ public class Enemy : MonoBehaviour, IDamagable
     private void ResetAttack()
     {
         alreadyAttacked = false;
+        anim.SetBool("Attacking", false);
     }
 
 
@@ -141,7 +145,7 @@ public class Enemy : MonoBehaviour, IDamagable
     {
         health -= damageAmount;
 
-        if (health <= 0)
+        if (health <= 0 && !isDying)
         {
             agent.SetDestination(gameObject.transform.position); // So enemy don't continue to move while dying animation
 
@@ -150,15 +154,10 @@ public class Enemy : MonoBehaviour, IDamagable
                 PlayerStats.instance.AddToStat("kill", 1);
 
             isDying = true;
-            //anim.SetTrigger("Dying");
-
-            // Fixed the bullets being stopped by dying enemies colliders during the dying animation..
-            //GetComponent<Collider>().enabled = !GetComponent<Collider>().enabled;
-            
     
         
+            anim.SetBool("Dying", true);
             Die();
-            //Invoke(nameof(Die), 2.9f);
 
             
         }
@@ -169,11 +168,8 @@ public class Enemy : MonoBehaviour, IDamagable
 
         // Ragdoll components
         GetComponent<Animator>().enabled = false;
+        GetComponent<EnemySounds>().DieSound();
         SetRigidbodyState(false);
-        //SetColliderState(false);
-
-        //gameObject.SetActive(false);
-    
 
         // Time before they respawn
         Invoke(nameof(Respawn), 3f);
@@ -188,15 +184,14 @@ public class Enemy : MonoBehaviour, IDamagable
         
         GetComponent<Animator>().enabled = true;
         SetRigidbodyState(true);
-        //SetColliderState(true);
 
         if (agent.speed <= 10){
             // Make the enemy 1 faster every time they respawn
             agent.speed += 1; 
         }
 
+        anim.SetBool("Dying", false);
 
-        anim.SetTrigger("Respawn");
 
         startHealth += 5;
         health = startHealth;
