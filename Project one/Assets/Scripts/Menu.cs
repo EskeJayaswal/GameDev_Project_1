@@ -13,7 +13,7 @@ public class Menu : MonoBehaviour
 
     public void OnNewGameButton()
     {
-        SceneManager.LoadScene("Game Night");
+        SceneManager.LoadScene("Test Scene");
     }
 
     public void OnQuitButton()
