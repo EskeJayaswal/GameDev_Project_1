@@ -10,9 +10,16 @@ public class MouseLook : MonoBehaviour
 
     float XRotation = 0f;
 
+    // Flash Light
+    private GameObject flashLight;
+    private bool lightOn;
+
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        flashLight = transform.GetChild(1).gameObject;
+        lightOn = true;
         
     }
 
@@ -26,5 +33,13 @@ public class MouseLook : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(XRotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * mouseX);
+
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            flashLight.SetActive(!lightOn);
+            lightOn = !lightOn;
+            
+        }
+
     }
 }
