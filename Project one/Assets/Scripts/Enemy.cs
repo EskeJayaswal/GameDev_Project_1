@@ -33,6 +33,9 @@ public class Enemy : MonoBehaviour, IDamagable
     Vector3 startPosition;
     float startHealth;
     bool isDying;
+    
+    [Header("Minimap Sprites")]
+    private GameObject minimapSymbol;
 
 
     void Awake()
@@ -43,6 +46,9 @@ public class Enemy : MonoBehaviour, IDamagable
         startPosition = gameObject.transform.position;
         startHealth = health;
         isDying = false;
+
+        minimapSymbol = transform.GetChild(0).gameObject;
+        minimapSymbol.SetActive(true);
 
         // Ragdoll components
         SetRigidbodyState(true);
@@ -168,6 +174,7 @@ public class Enemy : MonoBehaviour, IDamagable
 
         // Ragdoll components
         GetComponent<Animator>().enabled = false;
+        minimapSymbol.SetActive(false);
         GetComponent<EnemySounds>().DieSound();
         SetRigidbodyState(false);
 
@@ -181,7 +188,7 @@ public class Enemy : MonoBehaviour, IDamagable
     private void Respawn()
     {
         gameObject.transform.position = startPosition;
-        
+        minimapSymbol.SetActive(true);
         GetComponent<Animator>().enabled = true;
         SetRigidbodyState(true);
 
