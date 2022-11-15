@@ -7,8 +7,8 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController controller;
 
     public float speed = 12f;
-    public float gravity = -20f;
-    public float jumpHeight = 3f;
+    public float gravity = -30f;
+    public float jumpHeight = 2f;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 velocity;
     bool isGrounded;
+
 
     void Update()
     {
