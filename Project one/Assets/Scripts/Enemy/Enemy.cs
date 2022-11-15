@@ -52,8 +52,6 @@ public class Enemy : MonoBehaviour, IDamagable
 
         // Ragdoll components
         SetRigidbodyState(true);
-        //SetColliderState(true);
-
     }
 
 
@@ -216,18 +214,6 @@ public class Enemy : MonoBehaviour, IDamagable
 
         GetComponent<Rigidbody>().isKinematic = !state;
     }
-
-
-    void SetColliderState(bool state)
-    {
-        Collider[] colliders = GetComponentsInChildren<Collider>();
-        
-        foreach (Collider c in colliders)
-        {
-            c.enabled = state;
-        }
-    }
-    
 
     private void SetAnimationParameters()
     {

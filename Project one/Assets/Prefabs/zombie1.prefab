@@ -1421,6 +1421,7 @@ GameObject:
   - component: {fileID: 3574620737356464830}
   - component: {fileID: 3574620737356464829}
   - component: {fileID: -3711624286057415560}
+  - component: {fileID: 4365879739886014295}
   - component: {fileID: 4334369536339866432}
   m_Layer: 11
   m_Name: zombie1
@@ -1506,8 +1507,6 @@ MonoBehaviour:
   timeBetweenAttacks: 2.6
   sightRange: 100
   attackRange: 2
-  aliveSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  deadSprite: {fileID: 0}
 --- !u!195 &3574620737356464829
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1547,6 +1546,20 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6eccc3b16cb57974898e9474669ca820, type: 3}
   - {fileID: 8300000, guid: 81d6112f09773da43be1498627a3c281, type: 3}
   - {fileID: 8300000, guid: a0a60894330947a44924ece240fe0daa, type: 3}
+--- !u!114 &4365879739886014295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4421113504573813114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c2c25f1d327f54498d4332b859e940, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minimapObjectType: {fileID: 11400000, guid: 626b02c21baa25742ae7aa0338341d96, type: 2}
+  minimapComponent: {fileID: 0}
 --- !u!82 &4334369536339866432
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2981,7 +2994,7 @@ GameObject:
   - component: {fileID: 145628204412532803}
   - component: {fileID: 8068224181923675633}
   m_Layer: 6
-  m_Name: MinimapEnemySymbol
+  m_Name: MinimapSymbol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3043,7 +3056,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3051,7 +3064,7 @@ SpriteRenderer:
   m_Size: {x: 0.2, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &8078546445793612180
