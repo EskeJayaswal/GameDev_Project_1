@@ -422,12 +422,8 @@ MonoBehaviour:
     description: Defend yourself
     goal:
       goalType: 0
-      requiredAmount: 10
+      requiredAmount: 50
       currentAmount: 0
-  activeQuestHUD: {fileID: 0}
-  questName: {fileID: 0}
-  questGoal: {fileID: 0}
-  goalCounter: {fileID: 0}
 --- !u!4 &619203993
 Transform:
   m_ObjectHideFlags: 0
@@ -1249,6 +1245,14 @@ PrefabInstance:
       propertyPath: bulletCount
       value: 
       objectReference: {fileID: 864937588}
+    - target: {fileID: 1921373046, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
+      propertyPath: m_DrawHalo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1921373046, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 779263065991868696, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
       propertyPath: m_RootOrder
       value: 0

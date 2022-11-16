@@ -7,10 +7,10 @@ public class QuestHandler : MonoBehaviour
 {
     public Quest quest;
 
-    public GameObject activeQuestHUD;
-    public TextMeshProUGUI questName;
-    public TextMeshProUGUI questGoal;
-    public TextMeshProUGUI goalCounter;
+    private GameObject activeQuestHUD;
+    private TextMeshProUGUI questName;
+    private TextMeshProUGUI questGoal;
+    private TextMeshProUGUI goalCounter;
 
     void Start()
     {
@@ -26,9 +26,11 @@ public class QuestHandler : MonoBehaviour
     {
         if(quest.isActive)
         {
-            questName.text = quest.title;
-            questGoal.text = quest.description;
-            goalCounter.text = GetCounterText();
+            
+            GetQuestInstructions();
+
+            if(quest.goal.isReached())
+                FinishQuest();
         }
         else
         {
@@ -37,9 +39,31 @@ public class QuestHandler : MonoBehaviour
 
     }
 
-    private string GetCounterText()
+    void GetQuestInstructions()
     {
-        return "Kill: " + quest.goal.currentAmount + " | " + quest.goal.requiredAmount;
+        // Quest display in the top left corner
+        questName.text = quest.title;
+        questGoal.text = quest.description;
+            
+        switch(quest.goal.goalType) 
+        {
+        case GoalType.Kill:
+            goalCounter.text = "Kill: " + quest.goal.currentAmount + " | " + quest.goal.requiredAmount;
+            break;
+        case GoalType.Gathering:
+            goalCounter.text = "NAN";
+            break;
+        case GoalType.CheckPoint:
+            goalCounter.text = "NAN";
+            break;
+        }
+    }
+
+    void FinishQuest()
+    {
+        quest.isActive = false;
+        // Pause the game and show next quest / objective
+        Debug.Log("ADD MORE QUESTS!");
     }
 
 
