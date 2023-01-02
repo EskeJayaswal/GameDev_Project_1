@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour, IDamagable
     private bool playerInSightRange, playerInAttackRange;
     
     // Respawn values
-    Vector3 startPosition;
+    // Vector3 startPosition;
     float startHealth;
     bool isDying;
     
@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour, IDamagable
         player = GameObject.Find("PlayerObject");
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-        startPosition = gameObject.transform.position;
+        // startPosition = gameObject.transform.position;
         startHealth = health;
         isDying = false;
 
@@ -177,7 +177,7 @@ public class Enemy : MonoBehaviour, IDamagable
         SetRigidbodyState(false);
 
         // Time before they respawn
-        Invoke(nameof(Respawn), 3f);
+        // Invoke(nameof(Respawn), 3f);
 
     }
 
@@ -185,7 +185,7 @@ public class Enemy : MonoBehaviour, IDamagable
 
     private void Respawn()
     {
-        gameObject.transform.position = startPosition;
+        // gameObject.transform.position = startPosition;
         minimapSymbol.SetActive(true);
         GetComponent<Animator>().enabled = true;
         SetRigidbodyState(true);
