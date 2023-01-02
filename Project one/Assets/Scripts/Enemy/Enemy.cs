@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour, IDamagable
 {
+    public GameObject zombie;
    
     private NavMeshAgent agent;
     private Animator anim;
@@ -57,7 +58,6 @@ public class Enemy : MonoBehaviour, IDamagable
         //if (!playerInSightRange && !playerInAttackRange) Patroling();
         if (playerInSightRange && !playerInAttackRange && !alreadyAttacked && !isDying) ChasePlayer();
         if (playerInSightRange && playerInAttackRange && !isDying) AttackPlayer();
-        
 
         anim.SetFloat("Speed", agent.desiredVelocity.magnitude);
     }
@@ -83,7 +83,6 @@ public class Enemy : MonoBehaviour, IDamagable
             // Play audio clip
             GetComponent<EnemySounds>().HitSound();
 
-            //Invoke(nameof(DoAttack), 1f);
             anim.SetBool("Attacking", true);
             Invoke(nameof(ResetAttack), timeBetweenAttacks - 1f);
         }
@@ -115,13 +114,9 @@ public class Enemy : MonoBehaviour, IDamagable
             // Add to kill score
             if(!isDying)
                 PlayerStats.instance.AddToStat("kill", 1);
-
             isDying = true;
     
-        
-            anim.SetBool("Dying", true);
             Die();
-
             
         }
     }
@@ -144,22 +139,15 @@ public class Enemy : MonoBehaviour, IDamagable
 
     private void Respawn()
     {
-        // gameObject.transform.position = startPosition;
         minimapSymbol.SetActive(true);
         GetComponent<Animator>().enabled = true;
         SetRigidbodyState(true);
 
-        if (agent.speed <= 10){
-            // Make the enemy 1 faster every time they respawn
-            agent.speed += 1; 
-        }
-
-        anim.SetBool("Dying", false);
-
-
         startHealth += 5;
         health = startHealth;
         isDying = false;
+        
+        zombie.SetActive(false);
     }
 
     void SetRigidbodyState(bool state)
