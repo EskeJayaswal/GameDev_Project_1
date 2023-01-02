@@ -1442,6 +1442,10 @@ PrefabInstance:
       propertyPath: m_Shadows.m_Type
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 779263065309634674, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
+      propertyPath: mouseSensitivity
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 779263065991868696, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
       propertyPath: m_RootOrder
       value: 0
