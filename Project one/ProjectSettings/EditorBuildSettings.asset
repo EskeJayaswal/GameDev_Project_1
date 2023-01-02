@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game Night.unity
     guid: 13f83e0d84ef2604c9313fafa0a8400c
+  - enabled: 1
+    path: Assets/Scenes/Test Scene.unity
+    guid: 77cbdcbf655b53e42bccb7da7964faba
   m_configObjects: {}
