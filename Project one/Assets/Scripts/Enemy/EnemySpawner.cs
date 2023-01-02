@@ -17,7 +17,6 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
         timeSinceSpawn += Time.deltaTime;
-        Debug.Log(timeSinceSpawn);
         if(timeSinceSpawn >= timeToSpawn)
         {
             GameObject newZombie = objectPool.GetZombie();

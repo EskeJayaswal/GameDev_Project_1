@@ -10,15 +10,8 @@ public class Enemy : MonoBehaviour, IDamagable
     private Animator anim;
 
     private GameObject player;
-    public LayerMask whatIsGround, whatIsPlayer;
+    public LayerMask whatIsPlayer;
     public float health = 50f;
-
-/*
-    // Patrol
-    public Vector3 walkPoint;
-    bool walkPointSet;
-    public float walkPointRange;
-    */
 
     // Attacking
     public float damage = 10f;
@@ -30,7 +23,6 @@ public class Enemy : MonoBehaviour, IDamagable
     private bool playerInSightRange, playerInAttackRange;
     
     // Respawn values
-    // Vector3 startPosition;
     float startHealth;
     bool isDying;
     
@@ -43,7 +35,7 @@ public class Enemy : MonoBehaviour, IDamagable
         player = GameObject.Find("PlayerObject");
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-        // startPosition = gameObject.transform.position;
+        //startPosition = gameObject.transform.position;
         startHealth = health;
         isDying = false;
 
@@ -53,6 +45,7 @@ public class Enemy : MonoBehaviour, IDamagable
         // Ragdoll components
         SetRigidbodyState(true);
     }
+
 
 
     void Update()
@@ -66,41 +59,9 @@ public class Enemy : MonoBehaviour, IDamagable
         if (playerInSightRange && playerInAttackRange && !isDying) AttackPlayer();
         
 
-        SetAnimationParameters();
+        anim.SetFloat("Speed", agent.desiredVelocity.magnitude);
     }
 
-/*
-    private void Patroling()
-    {
-        if (!walkPointSet) SearchWalkPoint();
-
-        if (walkPointSet)
-            agent.SetDestination(walkPoint);
-
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
-
-        // Check if walkpoint is reached
-        if (distanceToWalkPoint.magnitude < 1f)
-            walkPointSet = false;
-
-    }
-
-
-    private void SearchWalkPoint()
-    {
-        // Finde random coordinates within range
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
-
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-
-        // Check if checkpoint is inside map
-        if (Physics.Raycast(walkPoint, - transform.up, 2f, whatIsGround)) 
-            walkPointSet = true;
-        
-    }
-
-*/
 
     private void ChasePlayer()
     {
@@ -113,8 +74,6 @@ public class Enemy : MonoBehaviour, IDamagable
         // Make sure enemy doesnt move
         agent.SetDestination(transform.position);
 
-
-
         if (!alreadyAttacked)
         {
             transform.LookAt(player.transform);
@@ -124,7 +83,7 @@ public class Enemy : MonoBehaviour, IDamagable
             // Play audio clip
             GetComponent<EnemySounds>().HitSound();
 
-            Invoke(nameof(DoAttack), 1f);
+            //Invoke(nameof(DoAttack), 1f);
             anim.SetBool("Attacking", true);
             Invoke(nameof(ResetAttack), timeBetweenAttacks - 1f);
         }
@@ -177,7 +136,7 @@ public class Enemy : MonoBehaviour, IDamagable
         SetRigidbodyState(false);
 
         // Time before they respawn
-        // Invoke(nameof(Respawn), 3f);
+        Invoke(nameof(Respawn), 3f);
 
     }
 
@@ -215,8 +174,4 @@ public class Enemy : MonoBehaviour, IDamagable
         GetComponent<Rigidbody>().isKinematic = !state;
     }
 
-    private void SetAnimationParameters()
-    {
-        anim.SetFloat("Speed", agent.desiredVelocity.magnitude);
-    }
 }
