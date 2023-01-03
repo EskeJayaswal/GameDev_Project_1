@@ -6,13 +6,20 @@ using UnityEngine.AI;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField]
-    private float timeToSpawn = 5f;
+    private float timeToSpawn = 30f;
+    [SerializeField]
+    private float offset = 1f;
     private float timeSinceSpawn;
     private EnemyObjectPool objectPool;
 
     void Start()
     {
         objectPool = FindObjectOfType<EnemyObjectPool>();
+
+
+        timeToSpawn = Random.Range(timeToSpawn - offset, timeToSpawn + offset);
+        // Make them spawn from the beginning of the game
+        timeSinceSpawn = timeToSpawn;
     }
 
     void Update()

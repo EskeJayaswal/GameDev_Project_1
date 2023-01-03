@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cdff92c3bc0d8e40a829d71b90d7539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToSpawn: 5
+  timeToSpawn: 30
+  offset: 1
 --- !u!1 &4811053295559469227
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +96,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4811053295559469227}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
