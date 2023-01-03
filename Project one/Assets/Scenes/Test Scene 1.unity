@@ -854,22 +854,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 758410559, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
+    - target: {fileID: 611930982, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
       propertyPath: bulletCount
       value: 
       objectReference: {fileID: 864937588}
-    - target: {fileID: 1921373046, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
-      propertyPath: m_DrawHalo
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1921373046, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
-      propertyPath: m_Shadows.m_Type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 779263065309634674, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
-      propertyPath: mouseSensitivity
-      value: 100
-      objectReference: {fileID: 0}
+    - target: {fileID: 1294062220, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
+      propertyPath: bulletCount
+      value: 
+      objectReference: {fileID: 864937588}
     - target: {fileID: 779263065991868696, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -913,10 +905,6 @@ PrefabInstance:
     - target: {fileID: 779263065991868696, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 779263065991868697, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
-      propertyPath: jumpHeight
-      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 779263065991868701, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
       propertyPath: m_Name
