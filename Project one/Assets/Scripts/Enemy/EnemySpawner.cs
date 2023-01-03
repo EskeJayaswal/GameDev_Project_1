@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -19,17 +20,22 @@ public class EnemySpawner : MonoBehaviour
                 timeSinceSpawn += Time.deltaTime;
         if(timeSinceSpawn >= timeToSpawn)
         {
+
             Vector3 currentPos = this.transform.position;
 
+            // Spawn zone is 10 x 20
             float randomX = Random.Range(-5.0f, 5.0f);
-            float randomZ = Random.Range(-5.0f, 5.0f);
+            float randomZ = Random.Range(-10.0f, 10.0f);
 
-            Vector3 newPos = new Vector3(currentPos.x + randomX ,0, currentPos.z + randomZ);
+            Vector3 newPos = new Vector3(currentPos.x + randomX ,currentPos.y, currentPos.z + randomZ);
 
             GameObject newZombie = objectPool.GetZombie();
-            newZombie.transform.position = this.transform.position;
-            newZombie.transform.position = newPos;
+            newZombie.GetComponent<NavMeshAgent>().Warp(newPos);
+            //newZombie.transform.position = newPos;
             timeSinceSpawn = 0f;
+
+
+
         }
     }
 }
