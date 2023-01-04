@@ -10,6 +10,11 @@ public class PauseControl : MonoBehaviour
     public GameObject menu;
     public GameObject HUDCanvas;
 
+    [SerializeField]
+    private GameObject pauseScreen;
+    [SerializeField]
+    private GameObject optionsScreen;
+
     public static PauseControl instance;
 
     void Start()
@@ -58,7 +63,15 @@ public class PauseControl : MonoBehaviour
 
     public void OnOptionsButton() 
     {
-        Debug.Log("No Options yet..");
+        pauseScreen.SetActive(false);
+        optionsScreen.SetActive(true);
+    
+    }
+
+    public void OnOptionsBackButton() 
+    {
+        pauseScreen.SetActive(true);
+        optionsScreen.SetActive(false);
     
     }
 
