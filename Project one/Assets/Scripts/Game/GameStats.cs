@@ -18,7 +18,7 @@ public class GameStats : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(PlayerPrefs.GetFloat("Volume"));
+        // Makes sure the volume is set to whatever level we defined last time.
         LoadStoredVolume();
         
         

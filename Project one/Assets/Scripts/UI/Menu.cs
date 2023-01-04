@@ -13,7 +13,7 @@ public class Menu : MonoBehaviour
 
     public void OnNewGameButton()
     {
-        SceneManager.LoadScene("Test Scene");
+        SceneManager.LoadScene("Camp");
     }
 
     public void OnQuitButton()
