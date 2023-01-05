@@ -62,6 +62,7 @@ public class QuestHandler : MonoBehaviour
     void FinishQuest()
     {
         quest.isActive = false;
+        quest.isComplete = true;
         // Pause the game and show next quest / objective
         Debug.Log("ADD MORE QUESTS!");
     }
