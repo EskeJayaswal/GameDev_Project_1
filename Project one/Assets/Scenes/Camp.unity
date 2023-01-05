@@ -925,13 +925,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quest:
-    isActive: 1
-    title: Let's get started!
-    description: Defend yourself
+  - isActive: 1
+    isComplete: 0
+    title: Quest 1
+    description: Get 10 kills
     goal:
       goalType: 0
-      requiredAmount: 50
+      requiredAmount: 1
       currentAmount: 0
+  - isActive: 0
+    isComplete: 0
+    title: Quest 2
+    description: Get 20 kills
+    goal:
+      goalType: 0
+      requiredAmount: 2
+      currentAmount: 0
+  currentQuest: 0
+  activeQuestHUD: {fileID: 0}
 --- !u!4 &619203993
 Transform:
   m_ObjectHideFlags: 0

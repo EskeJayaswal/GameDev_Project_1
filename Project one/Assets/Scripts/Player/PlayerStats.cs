@@ -14,7 +14,7 @@ public class PlayerStats : MonoBehaviour, IDamagable
     public Stat kills;
 
     // QuestHandler
-    public QuestGoal questHandler;
+    public QuestHandler questHandler;
 
     // Singleton
     public static PlayerStats instance;
@@ -31,7 +31,7 @@ public class PlayerStats : MonoBehaviour, IDamagable
         hits.curValue = hits.startValue;
         kills.curValue = kills.startValue;
 
-        questHandler = GameObject.Find("QuestHandler").GetComponent<QuestHandler>().quest.goal;
+        questHandler = GameObject.Find("QuestHandler").GetComponent<QuestHandler>();
     }
 
     void Update()
@@ -78,9 +78,9 @@ public class PlayerStats : MonoBehaviour, IDamagable
         case "kill":
             kills.Add(amount);
             kills.counter.text = string.Format("Kills: {0}", kills.curValue.ToString());
-            if(questHandler.goalType == GoalType.Kill && !questHandler.isReached())
+            if(questHandler.GetCurrentQuest().goal.goalType == GoalType.Kill && !questHandler.GetCurrentQuest().goal.isReached())
             {
-                questHandler.currentAmount += 1;    
+                questHandler.GetCurrentQuest().goal.currentAmount += 1;
                 //Debug.Log(questHandler.currentAmount + "|" + questHandler.requiredAmount);
             }
             break;

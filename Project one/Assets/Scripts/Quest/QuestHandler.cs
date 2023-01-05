@@ -5,9 +5,9 @@ using TMPro;
 
 public class QuestHandler : MonoBehaviour
 {
-    public Quest quest;
-
-    private GameObject activeQuestHUD;
+    public Quest[] quest;
+    public int currentQuest = 0;
+    public GameObject activeQuestHUD;
     private TextMeshProUGUI questName;
     private TextMeshProUGUI questGoal;
     private TextMeshProUGUI goalCounter;
@@ -24,13 +24,16 @@ public class QuestHandler : MonoBehaviour
 
     void Update()
     {
-        if(quest.isActive)
+
+        if(quest[currentQuest].isActive)
         {
             
             GetQuestInstructions();
 
-            if(quest.goal.isReached())
+            if(quest[currentQuest].goal.isReached())
+            {
                 FinishQuest();
+            }
         }
         else
         {
@@ -42,13 +45,13 @@ public class QuestHandler : MonoBehaviour
     void GetQuestInstructions()
     {
         // Quest display in the top left corner
-        questName.text = quest.title;
-        questGoal.text = quest.description;
+        questName.text = quest[currentQuest].title;
+        questGoal.text = quest[currentQuest].description;
             
-        switch(quest.goal.goalType) 
+        switch(quest[currentQuest].goal.goalType) 
         {
         case GoalType.Kill:
-            goalCounter.text = "Kill: " + quest.goal.currentAmount + " | " + quest.goal.requiredAmount;
+            goalCounter.text = "Kill: " + quest[currentQuest].goal.currentAmount + " | " + quest[currentQuest].goal.requiredAmount;
             break;
         case GoalType.Gathering:
             goalCounter.text = "NAN";
@@ -59,14 +62,23 @@ public class QuestHandler : MonoBehaviour
         }
     }
 
-    void FinishQuest()
+    public Quest GetCurrentQuest()
     {
-        quest.isActive = false;
-        quest.isComplete = true;
-        // Pause the game and show next quest / objective
-        Debug.Log("ADD MORE QUESTS!");
+        return quest[currentQuest];
     }
 
+    void FinishQuest()
+    {
+        quest[currentQuest].isActive = false;
+        quest[currentQuest].isComplete = true;
+        // Pause the game and show next quest / objective
+        
+        if (quest.Length > currentQuest + 1)
+        {
+            currentQuest++;
+            quest[currentQuest].isActive = true;
+        }
 
-
+        Debug.Log("Quest complete");
+    }
 }
