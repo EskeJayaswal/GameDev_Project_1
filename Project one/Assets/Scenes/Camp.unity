@@ -933,14 +933,16 @@ MonoBehaviour:
       goalType: 0
       requiredAmount: 1
       currentAmount: 0
+    reward: {fileID: 1260352004}
   - isActive: 0
     isComplete: 0
     title: Quest 2
     description: Get 20 kills
     goal:
       goalType: 0
-      requiredAmount: 2
+      requiredAmount: 20
       currentAmount: 0
+    reward: {fileID: 0}
   currentQuest: 0
   activeQuestHUD: {fileID: 0}
 --- !u!4 &619203993
@@ -1845,6 +1847,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccfb6a98b7816634b887a6b028550b16, type: 3}
+--- !u!114 &1260352004 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 611930982, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
+  m_PrefabInstance: {fileID: 779263065504488748}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f65a68e531dce844ab612e7c41d4d17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1305526705
 PrefabInstance:
   m_ObjectHideFlags: 0

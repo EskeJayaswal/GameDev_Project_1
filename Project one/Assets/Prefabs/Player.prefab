@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedWeapon: 0
+  rifle: {fileID: 611930982}
 --- !u!114 &1112862515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -659,10 +660,7 @@ MonoBehaviour:
     startValue: 0
     uiBar: {fileID: 0}
     counter: {fileID: 0}
-  questHandler:
-    goalType: 0
-    requiredAmount: 0
-    currentAmount: 0
+  questHandler: {fileID: 0}
 --- !u!95 &1160868093
 Animator:
   serializedVersion: 4
@@ -943,6 +941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f65a68e531dce844ab612e7c41d4d17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 1
   damage: 75
   range: 200
   maxAmmo: 30
@@ -1112,6 +1111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f65a68e531dce844ab612e7c41d4d17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isLocked: 0
   damage: 10
   range: 100
   maxAmmo: 15

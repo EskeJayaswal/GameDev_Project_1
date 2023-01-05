@@ -5,6 +5,8 @@ using TMPro;
 
 public class Gun : MonoBehaviour
 {
+    
+    public bool isLocked;
 
     public float damage = 10f;
     public float range = 100f;
@@ -146,6 +148,12 @@ public class Gun : MonoBehaviour
     private void UpdateBulletText()
     {
         bulletCount.text = string.Format("{0} | {1}", currentAmmo.ToString(), totalAmmo.ToString());
+    }
+
+
+    public void UnlockWeapon()
+    {
+        isLocked = false;
     }
 
 }

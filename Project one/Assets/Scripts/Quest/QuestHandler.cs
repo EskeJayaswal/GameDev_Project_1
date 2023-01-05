@@ -73,6 +73,13 @@ public class QuestHandler : MonoBehaviour
         quest[currentQuest].isComplete = true;
         // Pause the game and show next quest / objective
         
+        if(quest[currentQuest].reward != null)
+        {
+            quest[currentQuest].reward.UnlockWeapon();
+        }
+
+
+
         if (quest.Length > currentQuest + 1)
         {
             currentQuest++;
