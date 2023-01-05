@@ -33,13 +33,17 @@ public class Gun : MonoBehaviour
     }
 
     //Denne metode bliver aktuel når vi har en weaponholder og mulgihed for at skifte mellem våben
-    void OnEnable()
+    void Awake()
     {
         currentAmmo = maxAmmo;
         totalAmmo = maxAmmo * maxClips;
         isReloading = false;
-        UpdateBulletText();
         animator.SetBool("Reloading", false);
+    }
+
+    void OnEnable()
+    {
+        UpdateBulletText();
     }
 
     void Update()
