@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 
-public class Macce : MonoBehaviour
+public class Mace : MonoBehaviour
 {
     
     public bool isLocked;
 
     public float damage = 25f;
     public float range = 10f;
+    public GameObject impactEffect;
 
     public Camera fpsCamera;
 

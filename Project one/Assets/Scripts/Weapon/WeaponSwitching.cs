@@ -3,9 +3,9 @@ using UnityEngine;
 public class WeaponSwitching : MonoBehaviour
 {
     public int selectedWeapon = 0;
-
+    
     [SerializeField]
-    private Gun rifle;
+    private Gun gun;
     
     void Start()
     {
@@ -15,32 +15,32 @@ public class WeaponSwitching : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!rifle.isLocked)
+        if(!gun.isLocked)
         {
 
-            int previousSelectedWeapon = selectedWeapon;
-            if (Input.GetAxis("Mouse ScrollWheel") > 0f)
-            {
-                if (selectedWeapon >= transform.childCount -1)
-                    selectedWeapon = 0;
-                else
-                    selectedWeapon++;
-            }
-
-            if (Input.GetAxis("Mouse ScrollWheel") < 0f)
-            {
-                if (selectedWeapon <= 0)
-                    selectedWeapon = transform.childCount - 1;
-                else
-                    selectedWeapon--;
-            }
-
-            if (previousSelectedWeapon != selectedWeapon)
-            {
-                SelectWeapon();
-            }
-            
+        int previousSelectedWeapon = selectedWeapon;
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
+            if (selectedWeapon >= transform.childCount -1)
+                selectedWeapon = 0;
+            else
+                selectedWeapon++;
         }
+
+         if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        {
+            if (selectedWeapon <= 0)
+                selectedWeapon = transform.childCount - 1;
+            else
+                selectedWeapon--;
+        }
+
+        if (previousSelectedWeapon != selectedWeapon)
+        {
+            SelectWeapon();
+        }
+        
+    }
     }
 
     void SelectWeapon()
