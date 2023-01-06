@@ -15,6 +15,7 @@ public class Mace : MonoBehaviour
     public Camera fpsCamera;
 
     public Animator animator;
+    public TextMeshProUGUI  bulletCount;
 
     void Update()
     {
@@ -25,9 +26,20 @@ public class Mace : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        UpdateBulletText();
+    }
+
+    void OnEnable()
+    {
+        UpdateBulletText();
+    }
+
     void Strike()
     {
         animator.SetTrigger("Strike");
+        UpdateBulletText();
 
         int layerMask = 1 << 11;
 
@@ -46,5 +58,10 @@ public class Mace : MonoBehaviour
     public void UnlockWeapon()
     {
         isLocked = false;
+    }
+
+    private void UpdateBulletText()
+    {
+        bulletCount.text = "";
     }
 }

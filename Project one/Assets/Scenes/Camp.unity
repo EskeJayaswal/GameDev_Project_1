@@ -672,12 +672,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa5d7af8d706134197c17eace632f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 1
+  isLocked: 0
   damage: 25
   range: 5
   impactEffect: {fileID: 5051222449461831014, guid: 8ee9864e0d569e2439a7015ad4c62590, type: 3}
   fpsCamera: {fileID: 1578700887}
   animator: {fileID: 543771031}
+  bulletCount: {fileID: 864937588}
 --- !u!1 &501508750 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 230370681892653902, guid: 73863065b355174498eeee9d0432553f, type: 3}
@@ -2912,7 +2913,7 @@ PrefabInstance:
       objectReference: {fileID: 1764023289}
     - target: {fileID: 1294062220, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
       propertyPath: isLocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1294062220, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
       propertyPath: bulletCount
@@ -2920,7 +2921,7 @@ PrefabInstance:
       objectReference: {fileID: 864937588}
     - target: {fileID: 353064334527227408, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 779263065991868696, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
       propertyPath: m_RootOrder
@@ -2988,7 +2989,7 @@ PrefabInstance:
       objectReference: {fileID: 531579525}
     - target: {fileID: 5594721361606628215, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7046358770676302968, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
       propertyPath: m_Enabled
