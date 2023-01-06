@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunSounds : MonoBehaviour
+public class WeaponSounds : MonoBehaviour
 {
     /* https://pixabay.com/sound-effects/search/reload/ */
 
@@ -13,6 +13,8 @@ public class GunSounds : MonoBehaviour
     private AudioClip reload;
     [SerializeField]
     private AudioClip dryfire;
+    [SerializeField]
+    private AudioClip maceSwing;
 
     private AudioSource audioSource;
 
@@ -35,5 +37,10 @@ public class GunSounds : MonoBehaviour
     void WeaponDryFire()
     {
         audioSource.PlayOneShot(dryfire);
+    }
+
+    void WeaponMaceSwing()
+    {
+        audioSource.PlayOneShot(maceSwing);
     }
 }

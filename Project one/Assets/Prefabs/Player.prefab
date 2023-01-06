@@ -173,6 +173,7 @@ MonoBehaviour:
   shoot: {fileID: 8300000, guid: a5cd140b2375f1d4a83f234a7ed630bc, type: 3}
   reload: {fileID: 8300000, guid: 093c3b04fc9a88b44a692d495cbd555a, type: 3}
   dryfire: {fileID: 8300000, guid: 9297a0e65231ee14e8cbe57f40a4e061, type: 3}
+  maceSwing: {fileID: 8300000, guid: f8480dbb983b2e542bde50206f0d3bbf, type: 3}
 --- !u!82 &1112862514
 AudioSource:
   m_ObjectHideFlags: 0
@@ -464,6 +465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivity: 100
   playerBody: {fileID: 779263065991868696}
+  flashLight: {fileID: 0}
 --- !u!1 &779263065794351251
 GameObject:
   m_ObjectHideFlags: 0

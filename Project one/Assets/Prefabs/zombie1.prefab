@@ -1545,6 +1545,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6eccc3b16cb57974898e9474669ca820, type: 3}
   - {fileID: 8300000, guid: 81d6112f09773da43be1498627a3c281, type: 3}
   - {fileID: 8300000, guid: a0a60894330947a44924ece240fe0daa, type: 3}
+  maceHitSound: {fileID: 8300000, guid: a96a8a50e3495b742a54a069e7afa66e, type: 3}
+  weaponHitSound: {fileID: 8300000, guid: a96a8a50e3495b742a54a069e7afa66e, type: 3}
 --- !u!114 &4365879739886014295
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,7 +8,12 @@ public class EnemySounds : MonoBehaviour
     private AudioClip dyingSound;
 
     [SerializeField]
-    private AudioClip[] hitSounds;
+    private AudioClip[] hitSounds; // Zombie hitting player
+
+    [SerializeField]
+    private AudioClip maceHitSound;
+    [SerializeField]
+    private AudioClip weaponHitSound;
 
     private AudioSource audioSource;
 
@@ -31,6 +36,18 @@ public class EnemySounds : MonoBehaviour
     {
 
         audioSource.PlayOneShot(GetRandomClip(hitSounds));
+    }
+
+    public void MaceHitSound()
+    {
+
+        audioSource.PlayOneShot(maceHitSound);
+    }
+
+    public void WeaponHitSound()
+    {
+
+        audioSource.PlayOneShot(weaponHitSound);
     }
 
     private AudioClip GetRandomClip(AudioClip[] audioList)

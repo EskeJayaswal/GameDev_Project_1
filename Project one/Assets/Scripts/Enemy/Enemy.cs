@@ -106,6 +106,8 @@ public class Enemy : MonoBehaviour, IDamagable
     public void TakePhysicalDamage(float damageAmount)
     {
         health -= damageAmount;
+        GetComponent<EnemySounds>().MaceHitSound();
+
 
         if (health <= 0 && !isDying)
         {

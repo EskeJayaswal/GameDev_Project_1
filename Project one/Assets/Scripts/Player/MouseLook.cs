@@ -11,6 +11,8 @@ public class MouseLook : MonoBehaviour
     float XRotation = 0f;
 
     // Flash Light
+
+    [SerializeField]
     private GameObject flashLight;
     private bool lightOn;
 
@@ -18,7 +20,7 @@ public class MouseLook : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        flashLight = transform.GetChild(1).gameObject;
+        //flashLight = transform.GetChild(1).gameObject;
         lightOn = true;
         
     }
