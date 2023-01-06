@@ -3,14 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 
-public class Gun : MonoBehaviour
+public class Gun : Weapon
 {
-    
-    public bool isLocked;
-
-    public float damage = 10f;
-    public float range = 100f;
-
     //reload variables
     public int maxAmmo = 15;
     public int maxClips = 6;
@@ -20,14 +14,8 @@ public class Gun : MonoBehaviour
     private bool isReloading = false;
     private bool isAllOutOfAmmo = false;
 
-    public Camera fpsCamera;
     public ParticleSystem muzzleFlash;
 
-    public GameObject impactEffect;
-
-    public Animator animator;
-
-    public TextMeshProUGUI  bulletCount;
 
     void start() 
     {

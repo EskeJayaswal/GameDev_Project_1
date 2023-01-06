@@ -3,20 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 
-public class Mace : MonoBehaviour
+public class Mace : Weapon
 {
     
-    public bool isLocked;
-
-    public float damage = 25f;
-    public float range = 10f;
-    public GameObject impactEffect;
-
-    public Camera fpsCamera;
-
-    public Animator animator;
-    public TextMeshProUGUI  bulletCount;
-
     void Update()
     {
         if(Input.GetButtonDown("Fire1"))
