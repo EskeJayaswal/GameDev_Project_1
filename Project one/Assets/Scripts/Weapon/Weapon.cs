@@ -16,5 +16,9 @@ public class Weapon : MonoBehaviour
     public Animator animator;
     public TextMeshProUGUI  bulletCount;
 
+    public void UnlockWeapon()
+    {
+        isLocked = false;
+    }
 
 }

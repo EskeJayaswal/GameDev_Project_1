@@ -5,12 +5,26 @@ using TMPro;
 
 public class QuestHandler : MonoBehaviour
 {
+
+
     public Quest[] quest;
     public int currentQuest = 0;
     public GameObject activeQuestHUD;
     private TextMeshProUGUI questName;
     private TextMeshProUGUI questGoal;
     private TextMeshProUGUI goalCounter;
+
+
+    // Window that pops up when we finish a quest.
+    [SerializeField]
+    private GameObject questScreen;
+    [SerializeField]
+    private TextMeshProUGUI questReward;
+    [SerializeField]
+    private TextMeshProUGUI rewardInstructions;
+    [SerializeField]
+    private float secondsShowingUI;
+    private bool UIHidden;
 
     void Start()
     {
@@ -20,6 +34,8 @@ public class QuestHandler : MonoBehaviour
         questName = activeQuestHUD.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         questGoal = activeQuestHUD.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         goalCounter = activeQuestHUD.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
+
+
     }
 
     void Update()
@@ -62,10 +78,6 @@ public class QuestHandler : MonoBehaviour
         }
     }
 
-    public Quest GetCurrentQuest()
-    {
-        return quest[currentQuest];
-    }
 
     void FinishQuest()
     {
@@ -75,10 +87,11 @@ public class QuestHandler : MonoBehaviour
         
         if(quest[currentQuest].reward != null)
         {
-            quest[currentQuest].reward.UnlockWeapon();
+            quest[currentQuest].reward.GetWeapon().UnlockWeapon();
         }
 
-
+        // Small UI screen that pops up for 3 seconds.
+        ShowQuestReward();
 
         if (quest.Length > currentQuest + 1)
         {
@@ -87,5 +100,41 @@ public class QuestHandler : MonoBehaviour
         }
 
         Debug.Log("Quest complete");
+    }
+
+
+    void ShowQuestReward()
+    {
+        string weaponName = quest[currentQuest].reward.GetWeapon().name;
+
+        questReward.text =  "The " + weaponName + " is now unlocked";
+        rewardInstructions.text = quest[currentQuest].reward.instructions;
+        
+        HideUI();
+        Invoke("HideUI", secondsShowingUI);
+        
+    }
+
+
+    void HideUI()
+    {
+        UIHidden = !UIHidden;
+        if(UIHidden)
+        {
+            questScreen.SetActive(true);
+        }
+        else 
+        {
+            questScreen.SetActive(false);
+        }
+    }
+
+
+
+
+
+    public Quest GetCurrentQuest()
+    {
+        return quest[currentQuest];
     }
 }

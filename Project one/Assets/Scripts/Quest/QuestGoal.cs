@@ -29,5 +29,6 @@ public enum GoalType
     Kill,
     Gathering,
     CheckPoint
+    
 
 }

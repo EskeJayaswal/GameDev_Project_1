@@ -143,9 +143,6 @@ public class Gun : Weapon
     }
 
 
-    public void UnlockWeapon()
-    {
-        isLocked = false;
-    }
+
 
 }

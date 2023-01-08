@@ -45,11 +45,6 @@ public class Mace : Weapon
         }
     }
 
-    public void UnlockWeapon()
-    {
-        isLocked = false;
-    }
-
     private void UpdateBulletText()
     {
         bulletCount.text = "";

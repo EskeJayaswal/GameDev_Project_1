@@ -921,7 +921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1024051618558617695, guid: d0ca414bf3cc5ea48a8121dbe115f855, type: 3}
       propertyPath: m_Name
-      value: Rifle_00
+      value: Rifle
       objectReference: {fileID: 0}
     - target: {fileID: 1024051618558617695, guid: d0ca414bf3cc5ea48a8121dbe115f855, type: 3}
       propertyPath: m_IsActive
@@ -957,6 +957,8 @@ MonoBehaviour:
   maxClips: 6
   currentAmmo: 0
   reloadTime: 3
+  isReloading: 0
+  isAllOutOfAmmo: 0
   muzzleFlash: {fileID: 5466975567885588802}
 --- !u!4 &1129707003852799146 stripped
 Transform:
@@ -1034,7 +1036,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5148756556195667155, guid: 21d24e7ba9edf954f8a02c065e8d4d77, type: 3}
       propertyPath: m_Name
-      value: Pistol_00
+      value: Pistol
       objectReference: {fileID: 0}
     - target: {fileID: 5148756556195667155, guid: 21d24e7ba9edf954f8a02c065e8d4d77, type: 3}
       propertyPath: m_IsActive
@@ -1131,6 +1133,8 @@ MonoBehaviour:
   maxClips: 6
   currentAmmo: 0
   reloadTime: 2
+  isReloading: 0
+  isAllOutOfAmmo: 0
   muzzleFlash: {fileID: 5466975566565901927}
 --- !u!1001 &7046358770682545182
 PrefabInstance:
@@ -1141,7 +1145,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100884, guid: 3b32b5a20c9db2c49b4d8e8025f6aeaa, type: 3}
       propertyPath: m_Name
-      value: Mace00_prefab
+      value: Mace
       objectReference: {fileID: 0}
     - target: {fileID: 408018, guid: 3b32b5a20c9db2c49b4d8e8025f6aeaa, type: 3}
       propertyPath: m_LocalScale.x

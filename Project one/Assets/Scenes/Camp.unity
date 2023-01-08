@@ -395,6 +395,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4811053295486319364, guid: ccfb6a98b7816634b887a6b028550b16, type: 3}
   m_PrefabInstance: {fileID: 83147646}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &193355853 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8285501022775191634, guid: 21f7ef4bd6f7f9846bf9f1160c57b173, type: 3}
+  m_PrefabInstance: {fileID: 4360265812979256345}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &209668445
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -569,6 +580,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4811053295486319364, guid: ccfb6a98b7816634b887a6b028550b16, type: 3}
   m_PrefabInstance: {fileID: 1848243974}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &413089649 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 413089649, guid: 21f7ef4bd6f7f9846bf9f1160c57b173, type: 3}
+  m_PrefabInstance: {fileID: 4360265812979256345}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &432915089
 PrefabInstance:
@@ -927,24 +943,32 @@ MonoBehaviour:
   quest:
   - isActive: 1
     isComplete: 0
-    title: Quest 1
+    title: Clubbing time!
+    description: Get 5 kills
+    goal:
+      goalType: 0
+      requiredAmount: 5
+      currentAmount: 0
+    reward:
+      weapon: {fileID: 1764023289}
+      instructions: Press 2 to access it.
+  - isActive: 0
+    isComplete: 0
+    title: Try the new gun
     description: Get 10 kills
     goal:
       goalType: 0
-      requiredAmount: 1
+      requiredAmount: 10
       currentAmount: 0
-    reward: {fileID: 1764023289}
-  - isActive: 0
-    isComplete: 0
-    title: Quest 2
-    description: Get 20 kills
-    goal:
-      goalType: 0
-      requiredAmount: 20
-      currentAmount: 0
-    reward: {fileID: 1260352004}
+    reward:
+      weapon: {fileID: 1260352004}
+      instructions: Press 3 to access it.
   currentQuest: 0
   activeQuestHUD: {fileID: 0}
+  questScreen: {fileID: 413089649}
+  questReward: {fileID: 1929629422}
+  rewardInstructions: {fileID: 193355853}
+  secondsShowingUI: 5
 --- !u!4 &619203993
 Transform:
   m_ObjectHideFlags: 0
@@ -2506,6 +2530,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4811053295486319364, guid: ccfb6a98b7816634b887a6b028550b16, type: 3}
   m_PrefabInstance: {fileID: 1537064200}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1929629422 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1929629422, guid: 21f7ef4bd6f7f9846bf9f1160c57b173, type: 3}
+  m_PrefabInstance: {fileID: 4360265812979256345}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2023556138
 PrefabInstance:
   m_ObjectHideFlags: 0

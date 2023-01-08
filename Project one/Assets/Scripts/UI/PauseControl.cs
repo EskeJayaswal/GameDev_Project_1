@@ -7,8 +7,10 @@ public class PauseControl : MonoBehaviour
 {
     public static bool gameIsPaused;
 
-    public GameObject menu;
-    public GameObject HUDCanvas;
+    [SerializeField]
+    private GameObject menu;
+    [SerializeField]
+    private GameObject HUDCanvas;
 
     [SerializeField]
     private GameObject pauseScreen;
