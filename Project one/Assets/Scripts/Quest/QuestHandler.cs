@@ -85,7 +85,7 @@ public class QuestHandler : MonoBehaviour
         quest[currentQuest].isComplete = true;
         // Pause the game and show next quest / objective
         
-        if(quest[currentQuest].reward != null)
+        if(quest[currentQuest].reward.GetWeapon() != null)
         {
             quest[currentQuest].reward.GetWeapon().UnlockWeapon();
         }
@@ -105,10 +105,19 @@ public class QuestHandler : MonoBehaviour
 
     void ShowQuestReward()
     {
+        if(quest[currentQuest].reward.GetWeapon() != null)
+        {
+
         string weaponName = quest[currentQuest].reward.GetWeapon().name;
 
         questReward.text =  "The " + weaponName + " is now unlocked";
         rewardInstructions.text = quest[currentQuest].reward.instructions;
+        }
+        else
+        {
+            questReward.text = "Good job!";
+            rewardInstructions.text = "";
+        }
         
         HideUI();
         Invoke("HideUI", secondsShowingUI);

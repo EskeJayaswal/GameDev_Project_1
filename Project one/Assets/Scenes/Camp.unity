@@ -963,6 +963,17 @@ MonoBehaviour:
     reward:
       weapon: {fileID: 1260352004}
       instructions: Press 3 to access it.
+  - isActive: 0
+    isComplete: 0
+    title: Rifle Time
+    description: Get 50 kills
+    goal:
+      goalType: 0
+      requiredAmount: 50
+      currentAmount: 0
+    reward:
+      weapon: {fileID: 0}
+      instructions: 
   currentQuest: 0
   activeQuestHUD: {fileID: 0}
   questScreen: {fileID: 413089649}
