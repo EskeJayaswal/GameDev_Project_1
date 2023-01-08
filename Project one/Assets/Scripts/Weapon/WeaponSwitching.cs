@@ -40,6 +40,9 @@ public class WeaponSwitching : MonoBehaviour
         weapons[activeWeapon].gameObject.SetActive(false);
         // Activate selected weapon
         weapons[select].gameObject.SetActive(true);
+        // If you change weapon during reload, you'll be unable to shoot.
+        //weapons[activeWeapon].animator.SetBool("Reloading", false);
+
 
         activeWeapon = select;
 

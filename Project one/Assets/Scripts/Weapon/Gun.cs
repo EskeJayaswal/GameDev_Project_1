@@ -11,8 +11,10 @@ public class Gun : Weapon
     private int totalAmmo;
     public int currentAmmo;
     public float reloadTime = 3f;
-    private bool isReloading = false;
-    private bool isAllOutOfAmmo = false;
+
+
+    public bool isReloading = false;
+    public bool isAllOutOfAmmo = false;
 
     public ParticleSystem muzzleFlash;
 
@@ -34,6 +36,8 @@ public class Gun : Weapon
     void OnEnable()
     {
         UpdateBulletText();
+        animator.SetBool("Reloading", false);
+        isReloading = false;
     }
 
     void Update()

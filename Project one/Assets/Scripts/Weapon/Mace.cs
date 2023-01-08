@@ -23,6 +23,7 @@ public class Mace : Weapon
     void OnEnable()
     {
         UpdateBulletText();
+        animator.SetBool("Reloading", false);
     }
 
     void Strike()
