@@ -5,18 +5,16 @@ using TMPro;
 
 public class QuestHandler : MonoBehaviour
 {
-
-
     public Quest[] quest;
     public int currentQuest = 0;
-    [SerializeField]
+    
     private GameObject activeQuestHUD;
     private TextMeshProUGUI questName;
     private TextMeshProUGUI questGoal;
     private TextMeshProUGUI goalCounter;
 
-
     // Window that pops up when we finish a quest.
+    [Header("Quest Conclusion")]
     [SerializeField]
     private GameObject questScreen;
     [SerializeField]
@@ -40,15 +38,12 @@ public class QuestHandler : MonoBehaviour
         questGoal = activeQuestHUD.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         goalCounter = activeQuestHUD.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
 
-
     }
 
     void Update()
     {
-
         if(quest[currentQuest].isActive)
         {
-            
             GetQuestInstructions();
 
             if(quest[currentQuest].goal.isReached())
@@ -66,6 +61,7 @@ public class QuestHandler : MonoBehaviour
             // Starts the countdown with required amount of seconds from the quest handler.
             if(!timerStarted)
             {
+                // Sets the count down float to the 
                 countDown = quest[currentQuest].goal.requiredAmount;
                 timerStarted = true;
             }
@@ -75,7 +71,12 @@ public class QuestHandler : MonoBehaviour
                 countDown -= Time.deltaTime;
             }
             else
+            {
+
+                // This triggers the quest completion.
                 quest[currentQuest].goal.requiredAmount = 0;
+                timerStarted = false;
+            }
 
         }
     }
@@ -98,7 +99,7 @@ public class QuestHandler : MonoBehaviour
             goalCounter.text = "NAN";
             break;
         case GoalType.CountDown:
-            goalCounter.text = "Time left: " + GetConvertedTime();
+            goalCounter.text = "Time left: " + GetConvertedTime(); // 120 seconds = 2:00 etc
             break;
         }
     }
@@ -108,14 +109,14 @@ public class QuestHandler : MonoBehaviour
     {
         quest[currentQuest].isActive = false;
         quest[currentQuest].isComplete = true;
-        // Pause the game and show next quest / objective
         
+        // Checks for rewards
         if(quest[currentQuest].reward.GetWeapon() != null)
         {
             quest[currentQuest].reward.GetWeapon().UnlockWeapon();
         }
 
-        // Small UI screen that pops up for 3 seconds.
+        // Small UI screen that pops up for 5 seconds.
         ShowQuestReward();
 
         if (quest.Length > currentQuest + 1)
@@ -123,8 +124,6 @@ public class QuestHandler : MonoBehaviour
             currentQuest++;
             quest[currentQuest].isActive = true;
         }
-
-        Debug.Log("Quest complete");
     }
 
 
@@ -171,9 +170,6 @@ public class QuestHandler : MonoBehaviour
 
         return minituesLeft + ":" + seconds;
     } 
-
-
-
 
     public Quest GetCurrentQuest()
     {

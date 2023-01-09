@@ -56,7 +56,7 @@ public class Enemy : MonoBehaviour, IDamagable
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         
         if (playerInSightRange && !playerInAttackRange && !alreadyAttacked && !isDying) ChasePlayer();
-        if (playerInSightRange && playerInAttackRange && !isDying) AttackPlayer();
+        if (playerInSightRange && playerInAttackRange && !alreadyAttacked && !isDying) AttackPlayer();
 
         anim.SetFloat("Speed", agent.desiredVelocity.magnitude);
     }
@@ -72,21 +72,19 @@ public class Enemy : MonoBehaviour, IDamagable
         // Make sure enemy doesnt move
         agent.SetDestination(transform.position);
 
-        if (!alreadyAttacked)
-        {
-            // Look at player
-            transform.LookAt(player.transform);
+         // Look at player
+        transform.LookAt(player.transform);
 
-            // Set to true so that zombie doesnt attack immediately
-            alreadyAttacked = true;
+        // Set to true so that zombie doesnt attack immediately
+        alreadyAttacked = true;
            
-            // Play audio clip
-            GetComponent<EnemySounds>().HitSound();
+        // Play audio clip
+        GetComponent<EnemySounds>().HitSound();
 
-            anim.SetBool("Attacking", true);
-            // Resets attacking phase after 3 secs
-            Invoke(nameof(ResetAttack), timeBetweenAttacks - 1f);
-        }
+        anim.SetBool("Attacking", true);
+        // Resets attacking phase after 3 secs
+        Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        
     }
 
     public void DoAttack()
@@ -99,8 +97,8 @@ public class Enemy : MonoBehaviour, IDamagable
 
     private void ResetAttack()
     {
-        alreadyAttacked = false;
         anim.SetBool("Attacking", false);
+        alreadyAttacked = false;
     }
 
 

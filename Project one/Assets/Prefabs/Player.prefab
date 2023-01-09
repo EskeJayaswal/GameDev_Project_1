@@ -699,7 +699,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minimapObjectType: {fileID: 11400000, guid: 7b4f32beb416e9a449accbbb2b8809c7, type: 2}
-  minimapComponent: {fileID: 0}
 --- !u!1 &779263066419787116
 GameObject:
   m_ObjectHideFlags: 0

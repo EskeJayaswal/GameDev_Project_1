@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.037350275, g: 0.025853487, b: 0.10276648, a: 1}
+  m_IndirectSpecularColor: {r: 0.036960486, g: 0.025937045, b: 0.10257017, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -965,17 +965,16 @@ MonoBehaviour:
       instructions: Press 3 to access it.
   - isActive: 0
     isComplete: 0
-    title: Rifle Time
-    description: Get 50 kills
+    title: I'll Survive..
+    description: Stay alive for 2 minutes
     goal:
-      goalType: 0
-      requiredAmount: 50
+      goalType: 3
+      requiredAmount: 120
       currentAmount: 0
     reward:
       weapon: {fileID: 0}
       instructions: 
   currentQuest: 0
-  activeQuestHUD: {fileID: 0}
   questScreen: {fileID: 413089649}
   questReward: {fileID: 1929629422}
   rewardInstructions: {fileID: 193355853}
@@ -2923,6 +2922,10 @@ PrefabInstance:
       propertyPath: bulletCount
       value: 
       objectReference: {fileID: 864937588}
+    - target: {fileID: 1160868093, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1294062220, guid: bb39555d5bbae1445ac1563b3d425ee4, type: 3}
       propertyPath: bulletCount
       value: 
@@ -3000,6 +3003,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 413089649, guid: 21f7ef4bd6f7f9846bf9f1160c57b173, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4360265812547640992, guid: 21f7ef4bd6f7f9846bf9f1160c57b173, type: 3}
       propertyPath: m_Pivot.x
       value: 0

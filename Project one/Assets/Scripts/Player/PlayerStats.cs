@@ -7,14 +7,18 @@ using TMPro;
 
 public class PlayerStats : MonoBehaviour, IDamagable
 {
-    public Stat health;
-    //public Stat energy
-    public Stat shotsFired;
-    public Stat hits;
-    public Stat kills;
+    [SerializeField]
+    private Stat health;
+    [SerializeField]
+    private Stat shotsFired;
+    [SerializeField]
+    private Stat hits;
+    [SerializeField]
+    private Stat kills;
 
     // QuestHandler
-    public QuestHandler questHandler;
+    [SerializeField]
+    private QuestHandler questHandler;
 
     // Singleton
     public static PlayerStats instance;
@@ -81,15 +85,10 @@ public class PlayerStats : MonoBehaviour, IDamagable
             if(questHandler.GetCurrentQuest().goal.goalType == GoalType.Kill && !questHandler.GetCurrentQuest().goal.isReached())
             {
                 questHandler.GetCurrentQuest().goal.currentAmount += 1;
-                //Debug.Log(questHandler.currentAmount + "|" + questHandler.requiredAmount);
             }
             break;
         }
     }
-
-
-
-
 }
 
 
