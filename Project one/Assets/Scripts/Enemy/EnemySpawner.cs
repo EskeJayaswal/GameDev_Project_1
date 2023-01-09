@@ -15,8 +15,8 @@ public class EnemySpawner : MonoBehaviour
     void Start()
     {
         objectPool = FindObjectOfType<EnemyObjectPool>();
-
-
+        
+        // mellem 29 og 31 sekunder tager det før spawnersne spawner nye zombier så de ikke går i takt
         timeToSpawn = Random.Range(timeToSpawn - offset, timeToSpawn + offset);
         // Make them spawn from the beginning of the game
         timeSinceSpawn = timeToSpawn;
@@ -24,24 +24,24 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-                timeSinceSpawn += Time.deltaTime;
+        // Keeps track of timesincespawn
+        timeSinceSpawn += Time.deltaTime;
+
         if(timeSinceSpawn >= timeToSpawn)
         {
-
             Vector3 currentPos = this.transform.position;
 
-            // Spawn zone is 10 x 20
+            // Spawn zone is 10 x 20 so zombies dont chase in formations
             float randomX = Random.Range(-5.0f, 5.0f);
             float randomZ = Random.Range(-10.0f, 10.0f);
 
             Vector3 newPos = new Vector3(currentPos.x + randomX ,currentPos.y, currentPos.z + randomZ);
 
             GameObject newZombie = objectPool.GetZombie();
+
+            // places the zombie on the NavMesh
             newZombie.GetComponent<NavMeshAgent>().Warp(newPos);
-            //newZombie.transform.position = newPos;
             timeSinceSpawn = 0f;
-
-
 
         }
     }

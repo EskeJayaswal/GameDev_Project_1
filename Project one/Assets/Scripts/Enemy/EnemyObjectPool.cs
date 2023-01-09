@@ -9,7 +9,7 @@ public class EnemyObjectPool : MonoBehaviour
     [SerializeField]
     private Queue<GameObject> zombiePool = new Queue<GameObject>();
     [SerializeField]
-    private int poolStartSize = 10;
+    private int poolStartSize = 100;
 
     void Start()
     {
@@ -21,21 +21,25 @@ public class EnemyObjectPool : MonoBehaviour
         }
     }
 
+    // Happens in the EnemySpawner
     public GameObject GetZombie()
     {
         if (zombiePool.Count > 0)
         {
+            // Dequeues after FIFO principle 
             GameObject zombie = zombiePool.Dequeue();
             zombie.SetActive(true);
             return zombie;
         }
         else
         {
+            // If the Queue is empty instanciate new zombies
             GameObject zombie = Instantiate(zombiePrefab);
             return zombie;
         }
     }
 
+    // happens in the EnemyReturn
     public void ReturnZombie(GameObject zombie)
     {
         zombiePool.Enqueue(zombie);

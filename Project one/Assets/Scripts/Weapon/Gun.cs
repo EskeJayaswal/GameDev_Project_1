@@ -12,12 +12,10 @@ public class Gun : Weapon
     public int currentAmmo;
     public float reloadTime = 3f;
 
-
     public bool isReloading = false;
     public bool isAllOutOfAmmo = false;
 
     public ParticleSystem muzzleFlash;
-
 
     void start() 
     {

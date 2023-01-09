@@ -51,11 +51,10 @@ public class Enemy : MonoBehaviour, IDamagable
 
     void Update()
     {
-        // Check for sight and attack range
+        // Set boolean for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
         
-        //if (!playerInSightRange && !playerInAttackRange) Patroling();
         if (playerInSightRange && !playerInAttackRange && !alreadyAttacked && !isDying) ChasePlayer();
         if (playerInSightRange && playerInAttackRange && !isDying) AttackPlayer();
 
@@ -66,7 +65,6 @@ public class Enemy : MonoBehaviour, IDamagable
     private void ChasePlayer()
     {
         agent.SetDestination(player.transform.position);
-        
     }
 
     private void AttackPlayer() 
@@ -76,22 +74,25 @@ public class Enemy : MonoBehaviour, IDamagable
 
         if (!alreadyAttacked)
         {
+            // Look at player
             transform.LookAt(player.transform);
 
+            // Set to true so that zombie doesnt attack immediately
             alreadyAttacked = true;
            
             // Play audio clip
             GetComponent<EnemySounds>().HitSound();
 
             anim.SetBool("Attacking", true);
+            // Resets attacking phase after 3 secs
             Invoke(nameof(ResetAttack), timeBetweenAttacks - 1f);
         }
-
     }
 
     public void DoAttack()
     {
         // Triggered within the enemy attack animation, so player only takes damage when the blow actually hits
+        // Uses script from Idamagable interface 
         if(playerInAttackRange && !isDying)
             PlayerStats.instance.GetComponent<IDamagable>().TakePhysicalDamage(damage);
     }
@@ -105,21 +106,20 @@ public class Enemy : MonoBehaviour, IDamagable
 
     public void TakePhysicalDamage(float damageAmount)
     {
+        // Take damage for enemies
         health -= damageAmount;
         GetComponent<EnemySounds>().MaceHitSound();
-
 
         if (health <= 0 && !isDying)
         {
             agent.SetDestination(gameObject.transform.position); // So enemy don't continue to move while dying animation
 
-            // Add to kill score
+            // Prevents killcount when hitting already dead enemy. 
             if(!isDying)
                 PlayerStats.instance.AddToStat("kill", 1);
             isDying = true;
     
             Die();
-            
         }
     }
 
@@ -130,11 +130,11 @@ public class Enemy : MonoBehaviour, IDamagable
         GetComponent<Animator>().enabled = false;
         minimapSymbol.SetActive(false);
         GetComponent<EnemySounds>().DieSound();
+        // Ragdoll
         SetRigidbodyState(false);
 
-        // Time before they respawn
+        // After 3 seconds the respawn method is invoked.
         Invoke(nameof(Respawn), 3f);
-
     }
 
 
@@ -149,11 +149,13 @@ public class Enemy : MonoBehaviour, IDamagable
         health = startHealth;
         isDying = false;
         
+        // Zombien gets deactivated and returned to obejct pool in EnemeyReturn script.
         zombie.SetActive(false);
     }
 
     void SetRigidbodyState(bool state)
     {
+        // Enemys body contains many rigid bodies (Arms, legs, etc.)
         Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
 
         foreach (Rigidbody r in rigidbodies)

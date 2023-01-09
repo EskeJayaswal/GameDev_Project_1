@@ -14,7 +14,7 @@ public class Weapon : MonoBehaviour
     public Camera fpsCamera;
 
     public Animator animator;
-    public TextMeshProUGUI  bulletCount;
+    public TextMeshProUGUI bulletCount;
 
     public void UnlockWeapon()
     {
