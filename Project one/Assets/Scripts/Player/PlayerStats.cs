@@ -15,6 +15,8 @@ public class PlayerStats : MonoBehaviour, IDamagable
     private Stat hits;
     [SerializeField]
     private Stat kills;
+    [SerializeField]
+    private Stat hitRate;
 
     // QuestHandler
     [SerializeField]
@@ -34,6 +36,7 @@ public class PlayerStats : MonoBehaviour, IDamagable
         shotsFired.curValue = shotsFired.startValue;
         hits.curValue = hits.startValue;
         kills.curValue = kills.startValue;
+        hitRate.curValue = hitRate.startValue;
 
         questHandler = GameObject.Find("QuestHandler").GetComponent<QuestHandler>();
     }
@@ -74,10 +77,12 @@ public class PlayerStats : MonoBehaviour, IDamagable
         case "shot":
             shotsFired.Add(amount);
             shotsFired.counter.text = string.Format("Shots: {0}", shotsFired.curValue.ToString());
+            hitRate.counter.text = string.Format("Hit Rate: {0}", GetHitRate() +"%");
             break;
         case "hit":
             hits.Add(amount);
             hits.counter.text = string.Format("Hits: {0}", hits.curValue.ToString());
+            hitRate.counter.text = string.Format("Hit Rate: {0}", GetHitRate() +"%");
             break;
         case "kill":
             kills.Add(amount);
@@ -88,6 +93,12 @@ public class PlayerStats : MonoBehaviour, IDamagable
             }
             break;
         }
+    }
+
+    string GetHitRate()
+    {
+        float result = (hits.curValue / shotsFired.curValue) * 100;
+        return result.ToString("N2");
     }
 }
 
