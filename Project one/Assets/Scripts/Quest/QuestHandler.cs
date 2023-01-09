@@ -8,19 +8,18 @@ public class QuestHandler : MonoBehaviour
     public Quest[] quest;
     public int currentQuest = 0;
     
+    [Header("Quest Container")]
+    [SerializeField]
     private GameObject activeQuestHUD;
-    private TextMeshProUGUI questName;
-    private TextMeshProUGUI questGoal;
-    private TextMeshProUGUI goalCounter;
+    [SerializeField]
+    private TextMeshProUGUI questName, questGoal, goalCounter;
 
     // Window that pops up when we finish a quest.
     [Header("Quest Conclusion")]
     [SerializeField]
     private GameObject questScreen;
     [SerializeField]
-    private TextMeshProUGUI questReward;
-    [SerializeField]
-    private TextMeshProUGUI rewardInstructions;
+    private TextMeshProUGUI questReward, rewardInstructions;    
     [SerializeField]
     private float secondsShowingUI;
     private bool UIHidden;
@@ -31,54 +30,27 @@ public class QuestHandler : MonoBehaviour
 
     void Start()
     {
-        activeQuestHUD = GameObject.Find("ActiveQuest");
         activeQuestHUD.SetActive(true);
-
-        questName = activeQuestHUD.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
-        questGoal = activeQuestHUD.transform.GetChild(1).GetComponent<TextMeshProUGUI>();
-        goalCounter = activeQuestHUD.transform.GetChild(2).GetComponent<TextMeshProUGUI>();
-
     }
 
     void Update()
     {
         if(quest[currentQuest].isActive)
         {
+            // Updates the QuestContainer
             GetQuestInstructions();
 
             if(quest[currentQuest].goal.isReached())
-            {
                 FinishQuest();
-            }
         }
         else
-        {
+            // Deactivate if there is no active quests
             activeQuestHUD.SetActive(false);
-        }
+
 
         if(quest[currentQuest].goal.goalType == GoalType.CountDown)
-        {
-            // Starts the countdown with required amount of seconds from the quest handler.
-            if(!timerStarted)
-            {
-                // Sets the count down float to the 
-                countDown = quest[currentQuest].goal.requiredAmount;
-                timerStarted = true;
-            }
+           CountDownQuestGoal();
 
-            if (countDown > 0)
-            {
-                countDown -= Time.deltaTime;
-            }
-            else
-            {
-
-                // This triggers the quest completion.
-                quest[currentQuest].goal.requiredAmount = 0;
-                timerStarted = false;
-            }
-
-        }
     }
 
     void GetQuestInstructions()
@@ -92,15 +64,37 @@ public class QuestHandler : MonoBehaviour
         case GoalType.Kill:
             goalCounter.text = "Kill: " + quest[currentQuest].goal.currentAmount + " | " + quest[currentQuest].goal.requiredAmount;
             break;
+        case GoalType.CountDown:
+            goalCounter.text = "Time left: " + GetConvertedTime(); // 120 seconds = 2:00 etc
+            break;
         case GoalType.Gathering:
             goalCounter.text = "NAN";
             break;
         case GoalType.CheckPoint:
             goalCounter.text = "NAN";
             break;
-        case GoalType.CountDown:
-            goalCounter.text = "Time left: " + GetConvertedTime(); // 120 seconds = 2:00 etc
-            break;
+        }
+    }
+
+    void CountDownQuestGoal()
+    {
+        // Starts the countdown with required amount of seconds from the quest handler.
+        if(!timerStarted)
+        {
+            // Sets the count down float to the 
+            countDown = quest[currentQuest].goal.requiredAmount;
+            timerStarted = true;
+        }
+
+        if (countDown > 0)
+        {
+            countDown -= Time.deltaTime;
+        } 
+        else
+        {
+            // This triggers the quest completion.
+            quest[currentQuest].goal.requiredAmount = 0;
+            timerStarted = false;
         }
     }
 
