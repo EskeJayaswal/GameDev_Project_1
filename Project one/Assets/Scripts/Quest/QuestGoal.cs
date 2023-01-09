@@ -12,14 +12,28 @@ public class QuestGoal
 
     public bool isReached()
     {
-        if(goalType == GoalType.CheckPoint)
+        if(goalType == GoalType.Kill)
+        {
+            return (currentAmount >= requiredAmount);
+        }
+        else if(goalType == GoalType.Gathering)
+        {
+            // TODO: Not implemented yet
+            return false;
+        }
+        else if(goalType == GoalType.CheckPoint)
         {
             // TODO: Not implemented yet
             // Maybe add a sphear or a Gizmo to determind if we are inside the Check Point area.
             return false;
         }
+        else if(goalType == GoalType.CountDown)
+        {
 
-        return (currentAmount >= requiredAmount);
+            return (currentAmount >= requiredAmount);
+        }
+        else
+            return false;
     }
     
 }
@@ -28,7 +42,6 @@ public enum GoalType
 {
     Kill,
     Gathering,
-    CheckPoint
-    
-
+    CheckPoint,
+    CountDown
 }

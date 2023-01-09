@@ -9,7 +9,8 @@ public class QuestHandler : MonoBehaviour
 
     public Quest[] quest;
     public int currentQuest = 0;
-    public GameObject activeQuestHUD;
+    [SerializeField]
+    private GameObject activeQuestHUD;
     private TextMeshProUGUI questName;
     private TextMeshProUGUI questGoal;
     private TextMeshProUGUI goalCounter;
@@ -25,6 +26,10 @@ public class QuestHandler : MonoBehaviour
     [SerializeField]
     private float secondsShowingUI;
     private bool UIHidden;
+
+    // Quests with a timer
+    private float countDown;
+    private bool timerStarted;
 
     void Start()
     {
@@ -56,6 +61,23 @@ public class QuestHandler : MonoBehaviour
             activeQuestHUD.SetActive(false);
         }
 
+        if(quest[currentQuest].goal.goalType == GoalType.CountDown)
+        {
+            // Starts the countdown with required amount of seconds from the quest handler.
+            if(!timerStarted)
+            {
+                countDown = quest[currentQuest].goal.requiredAmount;
+                timerStarted = true;
+            }
+
+            if (countDown > 0)
+            {
+                countDown -= Time.deltaTime;
+            }
+            else
+                quest[currentQuest].goal.requiredAmount = 0;
+
+        }
     }
 
     void GetQuestInstructions()
@@ -74,6 +96,9 @@ public class QuestHandler : MonoBehaviour
             break;
         case GoalType.CheckPoint:
             goalCounter.text = "NAN";
+            break;
+        case GoalType.CountDown:
+            goalCounter.text = "Time left: " + GetConvertedTime();
             break;
         }
     }
@@ -138,6 +163,14 @@ public class QuestHandler : MonoBehaviour
         }
     }
 
+    private string GetConvertedTime()
+    {
+        string minituesLeft = Mathf.FloorToInt(countDown / 60).ToString();
+        string seconds = (countDown % 60).ToString("F0");
+        seconds = seconds.Length == 1 ? seconds = "0" + seconds : seconds;
+
+        return minituesLeft + ":" + seconds;
+    } 
 
 
 
